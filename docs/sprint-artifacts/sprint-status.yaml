@@ -1,0 +1,62 @@
+# Sprint Status - Ma Bibliothèque
+# generated: 2025-12-18
+# project: Ma Bibliothèque
+# project_key: ma-bibliotheque
+# tracking_system: file-system
+# story_location: docs/sprint-artifacts
+
+# STATUS DEFINITIONS:
+# ==================
+# Epic Status:
+#   - backlog: Epic not yet started
+#   - in-progress: Epic actively being worked on
+#   - done: All stories in epic completed
+#
+# Epic Status Transitions:
+#   - backlog → in-progress: Automatically when first story is created (via create-story)
+#   - in-progress → done: Manually when all stories reach 'done' status
+#
+# Story Status:
+#   - backlog: Story only exists in epic file
+#   - drafted: Story file created in stories folder
+#   - ready-for-dev: Draft approved and story context created
+#   - in-progress: Developer actively working on implementation
+#   - review: Ready for code review (via Dev's code-review workflow)
+#   - done: Story completed
+#
+# Retrospective Status:
+#   - optional: Can be completed but not required
+#   - completed: Retrospective has been done
+#
+# WORKFLOW NOTES:
+# ===============
+# - Epic transitions to 'in-progress' automatically when first story is created
+# - Stories can be worked in parallel if team capacity allows
+# - SM typically drafts next story after previous one is 'done' to incorporate learnings
+# - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
+
+generated: 2025-12-18
+project: Ma Bibliothèque
+project_key: ma-bibliotheque
+tracking_system: file-system
+story_location: docs/sprint-artifacts
+
+development_status:
+  # Epic 1: Accès Utilisateur et Authentification
+  epic-1: in-progress
+  1-1-initialisation-projet-stack-technique: review
+  1-2-configuration-supabase-base-de-donnees: ready-for-dev
+  1-3-inscription-utilisateur: ready-for-dev
+  1-4-connexion-utilisateur: ready-for-dev
+  1-5-gestion-session-deconnexion: ready-for-dev
+  1-6-page-accueil-etat-vide: ready-for-dev
+  epic-1-retrospective: optional
+
+  # Epic 2: Gestion de la Collection de Livres
+  epic-2: backlog
+  2-1-affichage-liste-livres: ready-for-dev
+  2-2-ajouter-livre: ready-for-dev
+  2-3-modifier-livre: ready-for-dev
+  2-4-supprimer-livre: ready-for-dev
+  2-5-filtrer-par-statut: ready-for-dev
+  epic-2-retrospective: optional

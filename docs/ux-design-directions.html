@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ma Bibliotheque - Design Directions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background: oklch(0.9399 0.0203 345.6985);
+            --foreground: oklch(0.4712 0 0);
+            --card: oklch(0.9498 0.0500 86.8891);
+            --primary: oklch(0.6209 0.1801 348.1385);
+            --primary-foreground: oklch(1.0000 0 0);
+            --secondary: oklch(0.8095 0.0694 198.1863);
+            --accent: oklch(0.9195 0.0801 87.6670);
+            --destructive: oklch(0.7091 0.1697 21.9551);
+            --muted: oklch(0.8800 0.0504 212.0952);
+            --border: oklch(0.6209 0.1801 348.1385);
+            --radius: 0.4rem;
+            --shadow: 3px 3px 0px 0px rgba(180, 100, 140, 0.5);
+            --shadow-hover: 4px 4px 0px 0px rgba(180, 100, 140, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--background);
+            color: var(--foreground);
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .page-header {
+            background: white;
+            padding: 20px;
+            border-bottom: 2px solid var(--primary);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .page-header h1 {
+            font-family: 'Lora', serif;
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-align: center;
+        }
+
+        .page-header p {
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--foreground);
+            opacity: 0.7;
+            margin-top: 4px;
+        }
+
+        /* Direction Tabs */
+        .direction-tabs {
+            display: flex;
+            gap: 8px;
+            padding: 16px;
+            overflow-x: auto;
+            background: white;
+            border-bottom: 1px solid var(--muted);
+        }
+
+        .direction-tab {
+            padding: 12px 20px;
+            border: 2px solid var(--primary);
+            border-radius: var(--radius);
+            background: white;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+            box-shadow: var(--shadow);
+        }
+
+        .direction-tab:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .direction-tab.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Mockup Container */
+        .mockup-container {
+            max-width: 420px;
+            margin: 20px auto;
+            background: var(--background);
+            border: 3px solid var(--primary);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 6px 6px 0px 0px rgba(180, 100, 140, 0.5);
+        }
+
+        .phone-header {
+            background: white;
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .phone-header h2 {
+            font-family: 'Lora', serif;
+            font-size: 1.25rem;
+            color: var(--primary);
+        }
+
+        .book-count {
+            font-size: 0.75rem;
+            background: var(--accent);
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        /* Direction Descriptions */
+        .direction-info {
+            background: white;
+            margin: 20px;
+            padding: 16px;
+            border-radius: var(--radius);
+            border: 2px solid var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        .direction-info h3 {
+            font-family: 'Lora', serif;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .direction-info p {
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        .direction-info .pros {
+            margin-top: 12px;
+            font-size: 0.8rem;
+        }
+
+        .direction-info .pros span {
+            display: inline-block;
+            background: var(--secondary);
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin: 2px;
+        }
+
+        /* ============ DIRECTION 1: Carnet Classique ============ */
+        .direction-1 .filter-tabs {
+            display: flex;
+            padding: 12px;
+            gap: 8px;
+            background: white;
+            border-bottom: 1px solid var(--muted);
+        }
+
+        .direction-1 .filter-tab {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            border: 2px solid var(--primary);
+            border-radius: var(--radius);
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .direction-1 .filter-tab.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .direction-1 .book-list {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            min-height: 400px;
+        }
+
+        .direction-1 .book-card {
+            background: var(--card);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .direction-1 .book-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .direction-1 .book-title {
+            font-family: 'Lora', serif;
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .direction-1 .book-author {
+            font-size: 0.875rem;
+            color: var(--foreground);
+            opacity: 0.7;
+            margin-bottom: 12px;
+        }
+
+        .direction-1 .book-status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .direction-1 .status-a-lire { background: var(--primary); color: white; }
+        .direction-1 .status-en-cours { background: var(--accent); color: var(--foreground); }
+        .direction-1 .status-lu { background: var(--secondary); color: var(--foreground); }
+
+        /* ============ DIRECTION 2: Liste Compacte ============ */
+        .direction-2 .filter-chips {
+            display: flex;
+            padding: 12px;
+            gap: 8px;
+            overflow-x: auto;
+            background: white;
+        }
+
+        .direction-2 .chip {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            white-space: nowrap;
+            border: 2px solid var(--primary);
+            cursor: pointer;
+        }
+
+        .direction-2 .chip.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .direction-2 .book-list {
+            min-height: 400px;
+        }
+
+        .direction-2 .book-row {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            border-bottom: 1px solid var(--muted);
+            background: white;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .direction-2 .book-row:hover {
+            background: var(--card);
+        }
+
+        .direction-2 .book-info {
+            flex: 1;
+        }
+
+        .direction-2 .book-title {
+            font-family: 'Lora', serif;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .direction-2 .book-author {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .direction-2 .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-left: 12px;
+        }
+
+        .direction-2 .dot-a-lire { background: var(--primary); }
+        .direction-2 .dot-en-cours { background: var(--accent); border: 2px solid var(--foreground); }
+        .direction-2 .dot-lu { background: var(--secondary); }
+
+        /* ============ DIRECTION 3: Etagere Visuelle ============ */
+        .direction-3 .filter-tabs {
+            display: flex;
+            padding: 12px;
+            gap: 8px;
+            background: white;
+            border-bottom: 1px solid var(--muted);
+        }
+
+        .direction-3 .filter-tab {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            border: 2px solid var(--primary);
+            border-radius: var(--radius);
+            font-size: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .direction-3 .filter-tab.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .direction-3 .book-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            padding: 16px;
+            min-height: 400px;
+        }
+
+        .direction-3 .book-tile {
+            background: var(--card);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius);
+            padding: 16px;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: all 0.2s;
+            aspect-ratio: 3/4;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .direction-3 .book-tile:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .direction-3 .book-title {
+            font-family: 'Lora', serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .direction-3 .book-author {
+            font-size: 0.75rem;
+            opacity: 0.7;
+            margin-top: 4px;
+        }
+
+        .direction-3 .book-status {
+            font-size: 0.7rem;
+            padding: 4px 8px;
+            border-radius: 8px;
+            align-self: flex-start;
+        }
+
+        .direction-3 .status-a-lire { background: var(--primary); color: white; }
+        .direction-3 .status-en-cours { background: var(--accent); }
+        .direction-3 .status-lu { background: var(--secondary); }
+
+        /* ============ DIRECTION 4: Focus Mobile ============ */
+        .direction-4 .book-list {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            min-height: 340px;
+        }
+
+        .direction-4 .book-card {
+            background: var(--card);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            cursor: pointer;
+        }
+
+        .direction-4 .book-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .direction-4 .status-indicator {
+            width: 8px;
+            height: 60px;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .direction-4 .indicator-a-lire { background: var(--primary); }
+        .direction-4 .indicator-en-cours { background: var(--accent); }
+        .direction-4 .indicator-lu { background: var(--secondary); }
+
+        .direction-4 .book-info {
+            flex: 1;
+        }
+
+        .direction-4 .book-title {
+            font-family: 'Lora', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .direction-4 .book-author {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            margin-top: 2px;
+        }
+
+        .direction-4 .book-status-text {
+            font-size: 0.75rem;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+
+        .direction-4 .swipe-hint {
+            font-size: 0.7rem;
+            opacity: 0.5;
+            text-align: right;
+        }
+
+        .direction-4 .bottom-nav {
+            display: flex;
+            background: white;
+            border-top: 2px solid var(--primary);
+            padding: 8px 0;
+        }
+
+        .direction-4 .nav-item {
+            flex: 1;
+            text-align: center;
+            padding: 8px;
+            font-size: 0.7rem;
+            cursor: pointer;
+        }
+
+        .direction-4 .nav-item.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .direction-4 .nav-icon {
+            font-size: 1.2rem;
+            margin-bottom: 2px;
+        }
+
+        /* FAB Button */
+        .fab {
+            position: absolute;
+            bottom: 80px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            background: var(--primary);
+            color: white;
+            border: 2px solid var(--foreground);
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 3px 3px 0px 0px var(--foreground);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .fab:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0px 0px var(--foreground);
+        }
+
+        /* Hidden by default */
+        .mockup { display: none; }
+        .mockup.active { display: block; }
+
+        /* Comparison section */
+        .comparison {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .comparison h2 {
+            font-family: 'Lora', serif;
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .comparison-card {
+            background: white;
+            border: 2px solid var(--primary);
+            border-radius: var(--radius);
+            padding: 16px;
+            box-shadow: var(--shadow);
+        }
+
+        .comparison-card h4 {
+            font-family: 'Lora', serif;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .comparison-card ul {
+            font-size: 0.8rem;
+            padding-left: 16px;
+        }
+
+        .comparison-card li {
+            margin-bottom: 4px;
+        }
+
+        .recommendation {
+            background: var(--accent);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .recommendation h3 {
+            font-family: 'Lora', serif;
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <header class="page-header">
+        <h1>Ma Bibliotheque - Design Directions</h1>
+        <p>Explorez les 4 directions visuelles proposees</p>
+    </header>
+
+    <nav class="direction-tabs">
+        <button class="direction-tab active" onclick="showDirection(1)">1. Carnet Classique</button>
+        <button class="direction-tab" onclick="showDirection(2)">2. Liste Compacte</button>
+        <button class="direction-tab" onclick="showDirection(3)">3. Etagere Visuelle</button>
+        <button class="direction-tab" onclick="showDirection(4)">4. Focus Mobile</button>
+    </nav>
+
+    <!-- Direction 1: Carnet Classique -->
+    <div class="mockup direction-1 active" id="mockup-1">
+        <div class="direction-info">
+            <h3>Direction 1 : Carnet Classique</h3>
+            <p>Simplicite maximale avec des cards aeries. Chaque livre a sa place, comme dans un vrai carnet de lecture. Focus sur la lisibilite et l'elegance litteraire.</p>
+            <div class="pros">
+                <span>Lisible</span>
+                <span>Elegant</span>
+                <span>Calme</span>
+                <span>Litteraire</span>
+            </div>
+        </div>
+        <div class="mockup-container">
+            <div class="phone-header">
+                <h2>Ma Bibliotheque</h2>
+                <span class="book-count">12 livres</span>
+            </div>
+            <div class="filter-tabs">
+                <div class="filter-tab active">Tous</div>
+                <div class="filter-tab">A lire</div>
+                <div class="filter-tab">En cours</div>
+                <div class="filter-tab">Lu</div>
+            </div>
+            <div class="book-list">
+                <div class="book-card">
+                    <div class="book-title">L'Etranger</div>
+                    <div class="book-author">Albert Camus</div>
+                    <span class="book-status status-lu">Lu</span>
+                </div>
+                <div class="book-card">
+                    <div class="book-title">Le Petit Prince</div>
+                    <div class="book-author">Antoine de Saint-Exupery</div>
+                    <span class="book-status status-en-cours">En cours</span>
+                </div>
+                <div class="book-card">
+                    <div class="book-title">1984</div>
+                    <div class="book-author">George Orwell</div>
+                    <span class="book-status status-a-lire">A lire</span>
+                </div>
+            </div>
+            <button class="fab">+</button>
+        </div>
+    </div>
+
+    <!-- Direction 2: Liste Compacte -->
+    <div class="mockup direction-2" id="mockup-2">
+        <div class="direction-info">
+            <h3>Direction 2 : Liste Compacte</h3>
+            <p>Efficacite maximale : plus de livres visibles d'un coup. Ideal pour les grandes collections. Navigation rapide par scroll.</p>
+            <div class="pros">
+                <span>Efficace</span>
+                <span>Dense</span>
+                <span>Rapide</span>
+                <span>Productif</span>
+            </div>
+        </div>
+        <div class="mockup-container">
+            <div class="phone-header">
+                <h2>Ma Bibliotheque</h2>
+                <span class="book-count">12 livres</span>
+            </div>
+            <div class="filter-chips">
+                <span class="chip active">Tous (12)</span>
+                <span class="chip">A lire (5)</span>
+                <span class="chip">En cours (2)</span>
+                <span class="chip">Lu (5)</span>
+            </div>
+            <div class="book-list">
+                <div class="book-row">
+                    <div class="book-info">
+                        <div class="book-title">L'Etranger</div>
+                        <div class="book-author">Albert Camus</div>
+                    </div>
+                    <div class="status-dot dot-lu"></div>
+                </div>
+                <div class="book-row">
+                    <div class="book-info">
+                        <div class="book-title">Le Petit Prince</div>
+                        <div class="book-author">Antoine de Saint-Exupery</div>
+                    </div>
+                    <div class="status-dot dot-en-cours"></div>
+                </div>
+                <div class="book-row">
+                    <div class="book-info">
+                        <div class="book-title">1984</div>
+                        <div class="book-author">George Orwell</div>
+                    </div>
+                    <div class="status-dot dot-a-lire"></div>
+                </div>
+                <div class="book-row">
+                    <div class="book-info">
+                        <div class="book-title">Fahrenheit 451</div>
+                        <div class="book-author">Ray Bradbury</div>
+                    </div>
+                    <div class="status-dot dot-a-lire"></div>
+                </div>
+                <div class="book-row">
+                    <div class="book-info">
+                        <div class="book-title">Les Miserables</div>
+                        <div class="book-author">Victor Hugo</div>
+                    </div>
+                    <div class="status-dot dot-lu"></div>
+                </div>
+                <div class="book-row">
+                    <div class="book-info">
+                        <div class="book-title">Germinal</div>
+                        <div class="book-author">Emile Zola</div>
+                    </div>
+                    <div class="status-dot dot-lu"></div>
+                </div>
+            </div>
+            <button class="fab">+</button>
+        </div>
+    </div>
+
+    <!-- Direction 3: Etagere Visuelle -->
+    <div class="mockup direction-3" id="mockup-3">
+        <div class="direction-info">
+            <h3>Direction 3 : Etagere Visuelle</h3>
+            <p>Metaphore de bibliotheque physique avec une grille de "livres". Visuellement riche, sensation de collection tangible.</p>
+            <div class="pros">
+                <span>Visuel</span>
+                <span>Collection</span>
+                <span>Tactile</span>
+                <span>Familier</span>
+            </div>
+        </div>
+        <div class="mockup-container">
+            <div class="phone-header">
+                <h2>Ma Bibliotheque</h2>
+                <span class="book-count">12 livres</span>
+            </div>
+            <div class="filter-tabs">
+                <div class="filter-tab active">Tous</div>
+                <div class="filter-tab">A lire</div>
+                <div class="filter-tab">En cours</div>
+                <div class="filter-tab">Lu</div>
+            </div>
+            <div class="book-grid">
+                <div class="book-tile">
+                    <div>
+                        <div class="book-title">L'Etranger</div>
+                        <div class="book-author">Albert Camus</div>
+                    </div>
+                    <span class="book-status status-lu">Lu</span>
+                </div>
+                <div class="book-tile">
+                    <div>
+                        <div class="book-title">Le Petit Prince</div>
+                        <div class="book-author">Saint-Exupery</div>
+                    </div>
+                    <span class="book-status status-en-cours">En cours</span>
+                </div>
+                <div class="book-tile">
+                    <div>
+                        <div class="book-title">1984</div>
+                        <div class="book-author">George Orwell</div>
+                    </div>
+                    <span class="book-status status-a-lire">A lire</span>
+                </div>
+                <div class="book-tile">
+                    <div>
+                        <div class="book-title">Fahrenheit 451</div>
+                        <div class="book-author">Ray Bradbury</div>
+                    </div>
+                    <span class="book-status status-a-lire">A lire</span>
+                </div>
+            </div>
+            <button class="fab">+</button>
+        </div>
+    </div>
+
+    <!-- Direction 4: Focus Mobile -->
+    <div class="mockup direction-4" id="mockup-4">
+        <div class="direction-info">
+            <h3>Direction 4 : Focus Mobile</h3>
+            <p>Optimise pour le pouce. Navigation par bottom bar, cards larges avec indicateur de statut lateral. Moderne et fluide.</p>
+            <div class="pros">
+                <span>Mobile-first</span>
+                <span>Moderne</span>
+                <span>Fluide</span>
+                <span>Intuitif</span>
+            </div>
+        </div>
+        <div class="mockup-container" style="position: relative;">
+            <div class="phone-header">
+                <h2>Ma Bibliotheque</h2>
+                <span class="book-count">12 livres</span>
+            </div>
+            <div class="book-list">
+                <div class="book-card">
+                    <div class="status-indicator indicator-lu"></div>
+                    <div class="book-info">
+                        <div class="book-title">L'Etranger</div>
+                        <div class="book-author">Albert Camus</div>
+                        <div class="book-status-text">Lu</div>
+                    </div>
+                    <div class="swipe-hint">Swipe</div>
+                </div>
+                <div class="book-card">
+                    <div class="status-indicator indicator-en-cours"></div>
+                    <div class="book-info">
+                        <div class="book-title">Le Petit Prince</div>
+                        <div class="book-author">Antoine de Saint-Exupery</div>
+                        <div class="book-status-text">En cours</div>
+                    </div>
+                    <div class="swipe-hint">Swipe</div>
+                </div>
+                <div class="book-card">
+                    <div class="status-indicator indicator-a-lire"></div>
+                    <div class="book-info">
+                        <div class="book-title">1984</div>
+                        <div class="book-author">George Orwell</div>
+                        <div class="book-status-text">A lire</div>
+                    </div>
+                    <div class="swipe-hint">Swipe</div>
+                </div>
+            </div>
+            <div class="bottom-nav">
+                <div class="nav-item active">
+                    <div class="nav-icon">&#128218;</div>
+                    Livres
+                </div>
+                <div class="nav-item">
+                    <div class="nav-icon">&#128269;</div>
+                    A lire
+                </div>
+                <div class="nav-item">
+                    <div class="nav-icon">&#9989;</div>
+                    Lu
+                </div>
+                <div class="nav-item">
+                    <div class="nav-icon">&#9881;</div>
+                    Profil
+                </div>
+            </div>
+            <button class="fab" style="bottom: 100px;">+</button>
+        </div>
+    </div>
+
+    <!-- Comparison Section -->
+    <section class="comparison">
+        <h2>Comparaison des Directions</h2>
+        <div class="comparison-grid">
+            <div class="comparison-card">
+                <h4>1. Carnet Classique</h4>
+                <ul>
+                    <li>+ Tres lisible</li>
+                    <li>+ Elegant et litteraire</li>
+                    <li>+ Calme et reposant</li>
+                    <li>- Moins de livres visibles</li>
+                    <li>- Plus de scroll</li>
+                </ul>
+            </div>
+            <div class="comparison-card">
+                <h4>2. Liste Compacte</h4>
+                <ul>
+                    <li>+ Tres efficace</li>
+                    <li>+ Beaucoup de livres visibles</li>
+                    <li>+ Navigation rapide</li>
+                    <li>- Moins chaleureux</li>
+                    <li>- Moins distinctif</li>
+                </ul>
+            </div>
+            <div class="comparison-card">
+                <h4>3. Etagere Visuelle</h4>
+                <ul>
+                    <li>+ Visuellement riche</li>
+                    <li>+ Metaphore familiere</li>
+                    <li>+ Sensation de collection</li>
+                    <li>- Moins de texte visible</li>
+                    <li>- Peut etre charge</li>
+                </ul>
+            </div>
+            <div class="comparison-card">
+                <h4>4. Focus Mobile</h4>
+                <ul>
+                    <li>+ Tres mobile-friendly</li>
+                    <li>+ Navigation moderne</li>
+                    <li>+ Gestes intuitifs</li>
+                    <li>- Plus complexe</li>
+                    <li>- Courbe d'apprentissage</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="recommendation">
+            <h3>Recommandation</h3>
+            <p style="margin-top: 8px;">Pour Ma Bibliotheque, je recommande la <strong>Direction 1 (Carnet Classique)</strong> ou un hybride avec la <strong>Direction 4 (Focus Mobile)</strong> pour la navigation bottom bar.</p>
+            <p style="margin-top: 8px; font-size: 0.85rem;">La Direction 1 correspond parfaitement a la tonalite "carnet chaleureux" tout en assurant une lisibilite optimale des titres en Lora.</p>
+        </div>
+    </section>
+
+    <script>
+        function showDirection(num) {
+            // Hide all mockups
+            document.querySelectorAll('.mockup').forEach(m => m.classList.remove('active'));
+            // Show selected mockup
+            document.getElementById('mockup-' + num).classList.add('active');
+            // Update tabs
+            document.querySelectorAll('.direction-tab').forEach((t, i) => {
+                t.classList.toggle('active', i === num - 1);
+            });
+        }
+    </script>
+</body>
+</html>
