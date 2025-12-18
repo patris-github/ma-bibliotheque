@@ -1,6 +1,6 @@
 # Story 1.2: Configuration Supabase et Base de Données
 
-**Status:** ready-for-dev
+**Status:** Ready for Review
 
 ---
 
@@ -63,46 +63,46 @@
 
 ## Tasks / Subtasks
 
-- [ ] **Task 1: Création du projet Supabase** (AC: 2, 3, 4, 5)
-  - [ ] Créer un nouveau projet sur supabase.com (si pas déjà fait)
-  - [ ] Noter l'URL du projet et la clé anon
+- [x] **Task 1: Création du projet Supabase** (AC: 2, 3, 4, 5)
+  - [x] Créer un nouveau projet sur supabase.com (si pas déjà fait)
+  - [x] Noter l'URL du projet et la clé anon
 
-- [ ] **Task 2: Création de l'enum et de la table** (AC: 2, 3)
-  - [ ] Exécuter le SQL de création de l'enum `statut_lecture`
-  - [ ] Exécuter le SQL de création de la table `livres`
-  - [ ] Vérifier la structure dans le Dashboard Supabase
+- [x] **Task 2: Création de l'enum et de la table** (AC: 2, 3)
+  - [x] Exécuter le SQL de création de l'enum `statut_lecture`
+  - [x] Exécuter le SQL de création de la table `livres`
+  - [x] Vérifier la structure dans le Dashboard Supabase
 
-- [ ] **Task 3: Configuration RLS** (AC: 4)
-  - [ ] Activer RLS sur la table `livres`
-  - [ ] Créer la policy pour SELECT
-  - [ ] Créer la policy pour INSERT
-  - [ ] Créer la policy pour UPDATE
-  - [ ] Créer la policy pour DELETE
-  - [ ] Tester que RLS fonctionne (via Dashboard ou SQL)
+- [x] **Task 3: Configuration RLS** (AC: 4)
+  - [x] Activer RLS sur la table `livres`
+  - [x] Créer la policy pour SELECT
+  - [x] Créer la policy pour INSERT
+  - [x] Créer la policy pour UPDATE
+  - [x] Créer la policy pour DELETE
+  - [x] Tester que RLS fonctionne (via Dashboard ou SQL)
 
-- [ ] **Task 4: Création du trigger updated_at** (AC: 5)
-  - [ ] Créer la fonction `handle_updated_at()`
-  - [ ] Créer le trigger sur la table `livres`
+- [x] **Task 4: Création du trigger updated_at** (AC: 5)
+  - [x] Créer la fonction `handle_updated_at()`
+  - [x] Créer le trigger sur la table `livres`
 
-- [ ] **Task 5: Configuration des variables d'environnement** (AC: 7)
-  - [ ] Mettre à jour `.env.example` avec les variables Supabase
-  - [ ] Créer `.env.local` avec les vraies valeurs (ne pas committer)
-  - [ ] Vérifier que `.env.local` est dans `.gitignore`
+- [x] **Task 5: Configuration des variables d'environnement** (AC: 7)
+  - [x] Mettre à jour `.env.example` avec les variables Supabase
+  - [x] Créer `.env.local` avec les vraies valeurs (ne pas committer)
+  - [x] Vérifier que `.env.local` est dans `.gitignore`
 
-- [ ] **Task 6: Création du client Supabase** (AC: 1)
-  - [ ] Créer `src/lib/supabase.ts`
-  - [ ] Configurer le client avec les variables d'environnement
-  - [ ] Exporter le client typé
+- [x] **Task 6: Création du client Supabase** (AC: 1)
+  - [x] Créer `src/lib/supabase.ts`
+  - [x] Configurer le client avec les variables d'environnement
+  - [x] Exporter le client typé
 
-- [ ] **Task 7: Génération des types TypeScript** (AC: 6)
-  - [ ] Installer Supabase CLI si nécessaire : `npm install -D supabase`
-  - [ ] Générer les types : `npx supabase gen types typescript --project-id <project-id> > src/types/database.ts`
-  - [ ] Vérifier que les types correspondent au schéma
+- [x] **Task 7: Génération des types TypeScript** (AC: 6)
+  - [x] Installer Supabase CLI si nécessaire : `npm install -D supabase`
+  - [x] Générer les types : `npx supabase gen types typescript --project-id <project-id> > src/types/database.ts`
+  - [x] Vérifier que les types correspondent au schéma
 
-- [ ] **Task 8: Vérification finale** (AC: tous)
-  - [ ] Tester la connexion au client Supabase dans l'app
-  - [ ] Vérifier que les types s'importent correctement
-  - [ ] Commit avec message descriptif
+- [x] **Task 8: Vérification finale** (AC: tous)
+  - [x] Tester la connexion au client Supabase dans l'app
+  - [x] Vérifier que les types s'importent correctement
+  - [x] Commit avec message descriptif
 
 ---
 
@@ -327,38 +327,70 @@ Story context created by SM agent via create-story workflow.
 
 ### Agent Model Used
 
-Claude Opus 4.5 (SM Agent - Bob)
+- SM Agent: Claude Opus 4.5 (Bob) - Story creation
+- Dev Agent: Claude Opus 4.5 (Amelia) - Implementation
 
 ### Debug Log References
 
-_To be filled during implementation_
+- Migration `create_livres_table` applied successfully
+- Migration `fix_handle_updated_at_search_path` applied to fix security warning
+- Build: `npm run build` - SUCCESS
+- Lint: `npm run lint` - SUCCESS (0 errors)
+- Security advisors: PASSED (0 warnings after fix)
 
 ### Completion Notes List
 
-_To be filled during implementation_
+1. **Database Schema:** Created via Supabase MCP migration tool
+   - Enum `statut_lecture` with values: `a_lire`, `en_cours`, `lu`
+   - Table `livres` with all 7 columns as specified
+   - Index `idx_livres_user_id` for performance
+
+2. **RLS Configuration:** All 4 policies created and verified
+   - SELECT: `auth.uid() = user_id`
+   - INSERT: `auth.uid() = user_id`
+   - UPDATE: `auth.uid() = user_id` (USING + WITH CHECK)
+   - DELETE: `auth.uid() = user_id`
+
+3. **Trigger:** `handle_updated_at()` function with `set_updated_at` trigger
+   - Fixed search_path security warning by adding `SECURITY DEFINER SET search_path = public`
+
+4. **Client:** Supabase client configured with type safety
+   - Installed `@supabase/supabase-js`
+   - Client exports typed `supabase` instance
+
+5. **Types:** Generated via Supabase MCP `generate_typescript_types`
+   - Full Database type with Row, Insert, Update variants
+   - Enum types included
 
 ### File List
 
-_To be filled during implementation - expected files:_
-- `src/lib/supabase.ts`
-- `src/types/database.ts`
-- `.env.example` (mise à jour)
-- `.env.local` (créé, non commité)
+**New Files:**
+- `src/lib/supabase.ts` - Supabase client configuration
+- `src/types/database.ts` - Generated TypeScript types
+- `.env.local` - Local environment variables (not committed)
+
+**Modified Files:**
+- `.env.example` - Updated with Supabase variable documentation
+- `package.json` - Added `@supabase/supabase-js` dependency
+
+### Change Log
+
+- 2025-12-18: Story 1.2 implemented - Supabase configuration with database schema, RLS, triggers, and TypeScript types
 
 ---
 
 ## Definition of Done
 
-- [ ] Toutes les Acceptance Criteria validées
-- [ ] Enum `statut_lecture` créé dans Supabase
-- [ ] Table `livres` créée avec toutes les colonnes
-- [ ] RLS activé avec les 4 policies (SELECT, INSERT, UPDATE, DELETE)
-- [ ] Trigger `updated_at` fonctionnel
-- [ ] Client Supabase configuré dans `lib/supabase.ts`
-- [ ] Types générés dans `types/database.ts`
-- [ ] Variables d'environnement documentées
-- [ ] Connexion testée et fonctionnelle
-- [ ] Code commité avec message descriptif
+- [x] Toutes les Acceptance Criteria validées
+- [x] Enum `statut_lecture` créé dans Supabase
+- [x] Table `livres` créée avec toutes les colonnes
+- [x] RLS activé avec les 4 policies (SELECT, INSERT, UPDATE, DELETE)
+- [x] Trigger `updated_at` fonctionnel
+- [x] Client Supabase configuré dans `lib/supabase.ts`
+- [x] Types générés dans `types/database.ts`
+- [x] Variables d'environnement documentées
+- [x] Connexion testée et fonctionnelle
+- [x] Code commité avec message descriptif (bd1714a)
 
 ---
 

@@ -45,7 +45,7 @@ development_status:
   # Epic 1: Accès Utilisateur et Authentification
   epic-1: in-progress
   1-1-initialisation-projet-stack-technique: review
-  1-2-configuration-supabase-base-de-donnees: ready-for-dev
+  1-2-configuration-supabase-base-de-donnees: review
   1-3-inscription-utilisateur: ready-for-dev
   1-4-connexion-utilisateur: ready-for-dev
   1-5-gestion-session-deconnexion: ready-for-dev
