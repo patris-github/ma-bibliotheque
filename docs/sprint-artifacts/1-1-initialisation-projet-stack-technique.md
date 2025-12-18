@@ -136,7 +136,7 @@ VITE_SUPABASE_ANON_KEY=your-anon-key
   - [x] Exécuter `npm run dev` - l'app doit démarrer sans erreur
   - [x] Vérifier que Tailwind fonctionne (ajouter une classe test)
   - [x] Vérifier que le routing fonctionne (navigation de base)
-  - [ ] Commit initial avec message descriptif
+  - [x] Commit initial avec message descriptif
 
 ---
 
@@ -383,7 +383,7 @@ Story context created by SM agent via create-story workflow.
 - [x] Structure de dossiers conforme à l'architecture
 - [x] Variables CSS du thème appliquées
 - [x] Polices Lora et Poppins chargées
-- [ ] Code commité avec message descriptif
+- [x] Code commité avec message descriptif (16ebcbf)
 
 ---
 

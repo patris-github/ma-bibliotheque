@@ -1,6 +1,6 @@
 # Story 1.5: Gestion de Session et Déconnexion
 
-**Status:** ready-for-dev
+**Status:** Ready for Review
 
 ---
 
@@ -59,44 +59,44 @@
 
 ## Tasks / Subtasks
 
-- [ ] **Task 1: Création de AuthContext** (AC: 6)
-  - [ ] Créer `src/features/auth/AuthContext.tsx`
-  - [ ] Définir le type `AuthContextType` avec `user`, `isLoading`, `signOut`
-  - [ ] Créer le Provider avec gestion de l'état
+- [x] **Task 1: Création de AuthContext** (AC: 6)
+  - [x] Créer `src/features/auth/AuthContext.tsx`
+  - [x] Définir le type `AuthContextType` avec `user`, `isLoading`, `signOut`
+  - [x] Créer le Provider avec gestion de l'état
 
-- [ ] **Task 2: Implémentation de la persistance** (AC: 1, 7)
-  - [ ] Utiliser `supabase.auth.getSession()` au démarrage
-  - [ ] Écouter les changements avec `supabase.auth.onAuthStateChange()`
-  - [ ] Gérer l'état `isLoading` pendant la vérification initiale
+- [x] **Task 2: Implémentation de la persistance** (AC: 1, 7)
+  - [x] Utiliser `supabase.auth.getSession()` au démarrage
+  - [x] Écouter les changements avec `supabase.auth.onAuthStateChange()`
+  - [x] Gérer l'état `isLoading` pendant la vérification initiale
 
-- [ ] **Task 3: Création du hook useAuth** (AC: 6)
-  - [ ] Créer `src/features/auth/useAuth.ts` (si pas déjà fait)
-  - [ ] Exporter le hook qui utilise le context
-  - [ ] Inclure les fonctions `signIn`, `signUp`, `signOut`
+- [x] **Task 3: Création du hook useAuth** (AC: 6)
+  - [x] Créer `src/features/auth/useAuth.ts` (si pas déjà fait)
+  - [x] Exporter le hook qui utilise le context
+  - [x] Inclure les fonctions `signIn`, `signUp`, `signOut`
 
-- [ ] **Task 4: Implémentation de signOut** (AC: 3)
-  - [ ] Ajouter la fonction `signOut` dans le context
-  - [ ] Appeler `supabase.auth.signOut()`
-  - [ ] Rediriger vers `/login` après déconnexion
-  - [ ] Afficher Toast de confirmation
+- [x] **Task 4: Implémentation de signOut** (AC: 3)
+  - [x] Ajouter la fonction `signOut` dans le context
+  - [x] Appeler `supabase.auth.signOut()`
+  - [x] Rediriger vers `/login` après déconnexion
+  - [x] Afficher Toast de confirmation
 
-- [ ] **Task 5: Création du composant ProtectedRoute** (AC: 4, 5, 7)
-  - [ ] Créer `src/components/ProtectedRoute.tsx`
-  - [ ] Vérifier l'authentification via `useAuth()`
-  - [ ] Rediriger vers `/login` si non authentifié
-  - [ ] Afficher loader pendant la vérification
+- [x] **Task 5: Création du composant ProtectedRoute** (AC: 4, 5, 7)
+  - [x] Créer `src/components/ProtectedRoute.tsx`
+  - [x] Vérifier l'authentification via `useAuth()`
+  - [x] Rediriger vers `/login` si non authentifié
+  - [x] Afficher loader pendant la vérification
 
-- [ ] **Task 6: Configuration des routes protégées** (AC: 4, 5)
-  - [ ] Envelopper les routes privées avec `ProtectedRoute`
-  - [ ] Laisser `/login` et `/register` comme routes publiques
+- [x] **Task 6: Configuration des routes protégées** (AC: 4, 5)
+  - [x] Envelopper les routes privées avec `ProtectedRoute`
+  - [x] Laisser `/login` et `/register` comme routes publiques
 
-- [ ] **Task 7: Ajout du bouton Déconnexion** (AC: 2, 3)
-  - [ ] Ajouter un bouton/lien déconnexion dans le header ou menu
-  - [ ] Connecter au `signOut` du context
+- [x] **Task 7: Ajout du bouton Déconnexion** (AC: 2, 3)
+  - [x] Ajouter un bouton/lien déconnexion dans le header ou menu
+  - [x] Connecter au `signOut` du context
 
-- [ ] **Task 8: Intégration du Provider** (AC: 1, 6)
-  - [ ] Envelopper l'app avec `AuthProvider` dans `main.tsx`
-  - [ ] Placer après `QueryClientProvider`
+- [x] **Task 8: Intégration du Provider** (AC: 1, 6)
+  - [x] Envelopper l'app avec `AuthProvider` dans `main.tsx`
+  - [x] Placer après `QueryClientProvider`
 
 ---
 
@@ -241,28 +241,38 @@ src/
 ## Dev Agent Record
 
 ### Agent Model Used
-Claude Opus 4.5 (SM Agent - Bob)
+Claude Opus 4.5 (Dev Agent - Amelia)
+
+### Implementation Notes
+- **AuthContext.tsx**: Created with User, Session, isLoading state and signOut function. Uses getSession() on mount and onAuthStateChange() for real-time updates.
+- **ProtectedRoute.tsx**: Wraps protected routes, shows spinner during auth check, redirects to /login if unauthenticated.
+- **HomePage.tsx**: Created as separate page component with header containing user email and logout button with Toast feedback.
+- **Routing**: App.tsx updated to use ProtectedRoute for / route, /login and /register remain public.
+- **Provider hierarchy**: AuthProvider added in main.tsx after QueryClientProvider.
 
 ### File List
-_Expected files:_
-- `src/features/auth/AuthContext.tsx`
-- `src/components/ProtectedRoute.tsx`
-- Mise à jour `src/main.tsx`
-- Mise à jour `src/App.tsx`
+- `src/features/auth/AuthContext.tsx` (NEW)
+- `src/components/ProtectedRoute.tsx` (NEW)
+- `src/pages/HomePage.tsx` (NEW)
+- `src/main.tsx` (MODIFIED - added AuthProvider)
+- `src/App.tsx` (MODIFIED - routes with ProtectedRoute)
+
+### Change Log
+- 2025-12-18: Implemented session management and logout functionality (Story 1.5)
 
 ---
 
 ## Definition of Done
 
-- [ ] AuthContext créé et fonctionnel
-- [ ] Hook `useAuth()` disponible
-- [ ] Session persistante après refresh
-- [ ] Routes protégées avec redirection
-- [ ] Routes publiques accessibles
-- [ ] Bouton déconnexion visible et fonctionnel
-- [ ] Toast de confirmation à la déconnexion
-- [ ] Pas de flash de contenu pendant le chargement
-- [ ] Code commité
+- [x] AuthContext créé et fonctionnel
+- [x] Hook `useAuth()` disponible
+- [x] Session persistante après refresh
+- [x] Routes protégées avec redirection
+- [x] Routes publiques accessibles
+- [x] Bouton déconnexion visible et fonctionnel
+- [x] Toast de confirmation à la déconnexion
+- [x] Pas de flash de contenu pendant le chargement
+- [x] Code commité (abd1273)
 
 ---
 
