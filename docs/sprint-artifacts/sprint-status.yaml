@@ -53,8 +53,8 @@ development_status:
   epic-1-retrospective: optional
 
   # Epic 2: Gestion de la Collection de Livres
-  epic-2: backlog
-  2-1-affichage-liste-livres: ready-for-dev
+  epic-2: in-progress
+  2-1-affichage-liste-livres: review
   2-2-ajouter-livre: ready-for-dev
   2-3-modifier-livre: ready-for-dev
   2-4-supprimer-livre: ready-for-dev

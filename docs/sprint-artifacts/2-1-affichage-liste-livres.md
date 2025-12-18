@@ -1,6 +1,6 @@
 # Story 2.1: Affichage de la Liste des Livres
 
-**Status:** ready-for-dev
+**Status:** Ready for Review
 
 ---
 
@@ -65,41 +65,41 @@
 
 ## Tasks / Subtasks
 
-- [ ] **Task 1: Création du hook useBooks** (AC: 7)
-  - [ ] Créer `src/features/books/useBooks.ts`
-  - [ ] Implémenter `useQuery` pour récupérer les livres
-  - [ ] Query key : `['livres']`
-  - [ ] Fonction de fetch avec le client Supabase
+- [x] **Task 1: Création du hook useBooks** (AC: 7)
+  - [x] Créer `src/features/books/useBooks.ts`
+  - [x] Implémenter `useQuery` pour récupérer les livres
+  - [x] Query key : `['livres']`
+  - [x] Fonction de fetch avec le client Supabase
 
-- [ ] **Task 2: Création du composant StatusBadge** (AC: 3)
-  - [ ] Créer `src/components/StatusBadge.tsx`
-  - [ ] 3 variantes : `a_lire` (rose), `en_cours` (jaune), `lu` (bleu-vert)
-  - [ ] Labels en français : "À lire", "En cours", "Lu"
+- [x] **Task 2: Création du composant StatusBadge** (AC: 3)
+  - [x] Créer `src/components/StatusBadge.tsx`
+  - [x] 3 variantes : `a_lire` (rose), `en_cours` (jaune), `lu` (bleu-vert)
+  - [x] Labels en français : "À lire", "En cours", "Lu"
 
-- [ ] **Task 3: Création du composant BookCard** (AC: 2, 5)
-  - [ ] Créer `src/components/BookCard.tsx`
-  - [ ] Titre en Lora, auteur en Poppins
-  - [ ] Intégrer StatusBadge
-  - [ ] Style néo-brutaliste (ombre dure, bordure)
+- [x] **Task 3: Création du composant BookCard** (AC: 2, 5)
+  - [x] Créer `src/components/BookCard.tsx`
+  - [x] Titre en Lora, auteur en Poppins
+  - [x] Intégrer StatusBadge
+  - [x] Style néo-brutaliste (ombre dure, bordure)
 
-- [ ] **Task 4: Création du composant BookList** (AC: 1, 6)
-  - [ ] Créer `src/features/books/BookList.tsx`
-  - [ ] Utiliser le hook `useBooks`
-  - [ ] Mapper les données vers BookCard
-  - [ ] Layout en grille responsive
+- [x] **Task 4: Création du composant BookList** (AC: 1, 6)
+  - [x] Créer `src/features/books/BookList.tsx`
+  - [x] Utiliser le hook `useBooks`
+  - [x] Mapper les données vers BookCard
+  - [x] Layout en grille responsive
 
-- [ ] **Task 5: Création du Skeleton loader** (AC: 4)
-  - [ ] Créer `src/components/BookCardSkeleton.tsx`
-  - [ ] Utiliser le composant Skeleton de Shadcn/ui
-  - [ ] Même dimensions que BookCard
+- [x] **Task 5: Création du Skeleton loader** (AC: 4)
+  - [x] Créer `src/components/BookCardSkeleton.tsx`
+  - [x] Utiliser le composant Skeleton de Shadcn/ui
+  - [x] Même dimensions que BookCard
 
-- [ ] **Task 6: Intégration dans HomePage** (AC: 1)
-  - [ ] Remplacer EmptyState par BookList quand des livres existent
-  - [ ] Gérer la condition `books.length === 0`
+- [x] **Task 6: Intégration dans HomePage** (AC: 1)
+  - [x] Remplacer EmptyState par BookList quand des livres existent
+  - [x] Gérer la condition `books.length === 0`
 
-- [ ] **Task 7: Types TypeScript** (AC: 2)
-  - [ ] Créer le type `Book` dans `types/index.ts`
-  - [ ] Utiliser les types générés de Supabase
+- [x] **Task 7: Types TypeScript** (AC: 2)
+  - [x] Créer le type `Book` dans `types/index.ts`
+  - [x] Utiliser les types générés de Supabase
 
 ---
 
@@ -292,29 +292,53 @@ book.status
 ## Dev Agent Record
 
 ### Agent Model Used
-Claude Opus 4.5 (SM Agent - Bob)
+- Story Creation: Claude Opus 4.5 (SM Agent - Bob)
+- Implementation: Claude Opus 4.5 (DEV Agent - Amelia)
+
+### Implementation Notes
+- Hook `useBooks` créé avec TanStack Query, query key `['livres']`
+- Composant `StatusBadge` avec 3 variantes de couleur selon statut
+- Composant `BookCard` avec style néo-brutaliste (shadow-brutal)
+- Layout responsive grille 1/2/3 colonnes
+- Skeleton cards pendant le chargement
+- Données en snake_case (pas de conversion)
+- Build réussi sans erreurs TypeScript
 
 ### File List
-_Expected files:_
+**Created:**
 - `src/features/books/useBooks.ts`
 - `src/features/books/BookList.tsx`
 - `src/components/BookCard.tsx`
 - `src/components/BookCardSkeleton.tsx`
 - `src/components/StatusBadge.tsx`
+- `src/components/ui/badge.tsx` (shadcn)
+- `src/components/ui/skeleton.tsx` (shadcn)
+
+**Modified:**
+- `src/pages/HomePage.tsx`
+- `src/types/index.ts`
 
 ---
 
 ## Definition of Done
 
-- [ ] Hook `useBooks` fonctionnel avec TanStack Query
-- [ ] BookCard avec titre (Lora), auteur, badge statut
-- [ ] StatusBadge avec 3 couleurs (rose, jaune, bleu-vert)
-- [ ] Skeleton cards pendant le chargement
-- [ ] Style néo-brutaliste (ombres dures)
-- [ ] Layout responsive (1/2/3 colonnes)
-- [ ] Scroll fluide sans pagination
-- [ ] Données en snake_case (pas de conversion)
+- [x] Hook `useBooks` fonctionnel avec TanStack Query
+- [x] BookCard avec titre (Lora), auteur, badge statut
+- [x] StatusBadge avec 3 couleurs (rose, jaune, bleu-vert)
+- [x] Skeleton cards pendant le chargement
+- [x] Style néo-brutaliste (ombres dures)
+- [x] Layout responsive (1/2/3 colonnes)
+- [x] Scroll fluide sans pagination
+- [x] Données en snake_case (pas de conversion)
 - [ ] Code commité
+
+---
+
+## Change Log
+
+| Date | Description |
+|------|-------------|
+| 2025-12-18 | Story implémentée - Tous les composants créés et intégrés |
 
 ---
 
