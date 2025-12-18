@@ -1,18 +1,19 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router'
+import { ThemeToggle } from './components/ThemeToggle'
 
 function HomePage() {
   return (
-    <div className="min-h-screen bg-background p-8">
-      <h1 className="text-3xl font-bold text-primary font-serif">Ma Bibliothèque</h1>
-      <p className="mt-4 text-foreground font-sans">Bienvenue sur votre gestionnaire de lecture personnel.</p>
-      <div className="mt-8 flex gap-4">
-        <span className="px-3 py-1 bg-primary text-primary-foreground rounded-lg">À lire (Rose)</span>
-        <span className="px-3 py-1 bg-accent text-accent-foreground rounded-lg">En cours (Jaune)</span>
-        <span className="px-3 py-1 bg-secondary text-secondary-foreground rounded-lg">Lu (Bleu-vert)</span>
+    <div className="min-h-screen bg-background flex flex-col items-center justify-center p-8">
+      <h1 className="text-4xl font-bold text-primary font-serif text-center">Ma Bibliothèque</h1>
+      <p className="mt-4 text-foreground font-sans text-center">Bienvenue sur votre gestionnaire de lecture personnel.</p>
+      <div className="mt-8 flex flex-wrap justify-center gap-4">
+        <span className="px-4 py-2 bg-primary text-primary-foreground rounded-lg shadow-md">À lire</span>
+        <span className="px-4 py-2 bg-accent text-accent-foreground rounded-lg shadow-md">En cours</span>
+        <span className="px-4 py-2 bg-secondary text-secondary-foreground rounded-lg shadow-md">Lu</span>
       </div>
-      <nav className="mt-8 flex gap-4">
-        <Link to="/login" className="text-primary underline">Connexion</Link>
-        <Link to="/register" className="text-primary underline">Inscription</Link>
+      <nav className="mt-8 flex gap-6">
+        <Link to="/login" className="px-6 py-2 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition-opacity">Connexion</Link>
+        <Link to="/register" className="px-6 py-2 border-2 border-primary text-primary rounded-lg hover:bg-primary hover:text-primary-foreground transition-colors">Inscription</Link>
       </nav>
     </div>
   )
@@ -20,20 +21,20 @@ function HomePage() {
 
 function LoginPage() {
   return (
-    <div className="min-h-screen bg-background p-8">
-      <h1 className="text-3xl font-bold text-primary font-serif">Connexion</h1>
-      <p className="mt-4 text-muted-foreground">Page de connexion (à implémenter)</p>
-      <Link to="/" className="mt-4 inline-block text-primary underline">Retour à l'accueil</Link>
+    <div className="min-h-screen bg-background flex flex-col items-center justify-center p-8">
+      <h1 className="text-4xl font-bold text-primary font-serif text-center">Connexion</h1>
+      <p className="mt-4 text-muted-foreground text-center">Page de connexion (à implémenter)</p>
+      <Link to="/" className="mt-6 px-6 py-2 border-2 border-primary text-primary rounded-lg hover:bg-primary hover:text-primary-foreground transition-colors">Retour à l'accueil</Link>
     </div>
   )
 }
 
 function RegisterPage() {
   return (
-    <div className="min-h-screen bg-background p-8">
-      <h1 className="text-3xl font-bold text-primary font-serif">Inscription</h1>
-      <p className="mt-4 text-muted-foreground">Page d'inscription (à implémenter)</p>
-      <Link to="/" className="mt-4 inline-block text-primary underline">Retour à l'accueil</Link>
+    <div className="min-h-screen bg-background flex flex-col items-center justify-center p-8">
+      <h1 className="text-4xl font-bold text-primary font-serif text-center">Inscription</h1>
+      <p className="mt-4 text-muted-foreground text-center">Page d'inscription (à implémenter)</p>
+      <Link to="/" className="mt-6 px-6 py-2 border-2 border-primary text-primary rounded-lg hover:bg-primary hover:text-primary-foreground transition-colors">Retour à l'accueil</Link>
     </div>
   )
 }
@@ -41,6 +42,7 @@ function RegisterPage() {
 function App() {
   return (
     <BrowserRouter>
+      <ThemeToggle />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
