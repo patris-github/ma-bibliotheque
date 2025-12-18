@@ -49,7 +49,7 @@ development_status:
   1-3-inscription-utilisateur: review
   1-4-connexion-utilisateur: review
   1-5-gestion-session-deconnexion: review
-  1-6-page-accueil-etat-vide: ready-for-dev
+  1-6-page-accueil-etat-vide: review
   epic-1-retrospective: optional
 
   # Epic 2: Gestion de la Collection de Livres

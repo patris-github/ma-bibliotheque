@@ -1,6 +1,6 @@
 # Story 1.6: Page d'Accueil avec État Vide
 
-**Status:** ready-for-dev
+**Status:** Ready for Review
 
 ---
 
@@ -59,36 +59,36 @@
 
 ## Tasks / Subtasks
 
-- [ ] **Task 1: Création de la page HomePage** (AC: 1, 6)
-  - [ ] Créer `src/pages/HomePage.tsx`
-  - [ ] Implémenter le layout de base
-  - [ ] Préparer l'emplacement pour `BookList` (Epic 2)
+- [x] **Task 1: Création de la page HomePage** (AC: 1, 6)
+  - [x] Créer `src/pages/HomePage.tsx`
+  - [x] Implémenter le layout de base
+  - [x] Préparer l'emplacement pour `BookList` (Epic 2)
 
-- [ ] **Task 2: Création du composant Header** (AC: 7)
-  - [ ] Créer `src/components/Header.tsx`
-  - [ ] Afficher le titre "Ma Bibliothèque"
-  - [ ] Ajouter le bouton de déconnexion
-  - [ ] Connecter au `signOut` de `useAuth()`
+- [x] **Task 2: Création du composant Header** (AC: 7)
+  - [x] Créer `src/components/Header.tsx`
+  - [x] Afficher le titre "Ma Bibliothèque"
+  - [x] Ajouter le bouton de déconnexion
+  - [x] Connecter au `signOut` de `useAuth()`
 
-- [ ] **Task 3: Création du composant EmptyState** (AC: 2, 3, 4, 5)
-  - [ ] Créer `src/components/EmptyState.tsx`
-  - [ ] Message d'accueil chaleureux en français
-  - [ ] CTA "Ajouter mon premier livre" (bouton primary)
-  - [ ] Style néo-brutaliste avec ombres dures
+- [x] **Task 3: Création du composant EmptyState** (AC: 2, 3, 4, 5)
+  - [x] Créer `src/components/EmptyState.tsx`
+  - [x] Message d'accueil chaleureux en français
+  - [x] CTA "Ajouter mon premier livre" (bouton primary)
+  - [x] Style néo-brutaliste avec ombres dures
 
-- [ ] **Task 4: Intégration conditionnelle** (AC: 6)
-  - [ ] Préparer la logique pour afficher EmptyState ou BookList
-  - [ ] Pour l'instant, toujours afficher EmptyState (pas de livres)
+- [x] **Task 4: Intégration conditionnelle** (AC: 6)
+  - [x] Préparer la logique pour afficher EmptyState ou BookList
+  - [x] Pour l'instant, toujours afficher EmptyState (pas de livres)
 
-- [ ] **Task 5: Styling et Layout** (AC: 4, 5)
-  - [ ] Layout mobile-first
-  - [ ] Padding container 16px
-  - [ ] Centrage vertical et horizontal du contenu
-  - [ ] Typographie Poppins
+- [x] **Task 5: Styling et Layout** (AC: 4, 5)
+  - [x] Layout mobile-first
+  - [x] Padding container 16px
+  - [x] Centrage vertical et horizontal du contenu
+  - [x] Typographie Poppins
 
-- [ ] **Task 6: Route configuration** (AC: 1)
-  - [ ] S'assurer que `/` pointe vers `HomePage`
-  - [ ] Vérifier que la route est protégée
+- [x] **Task 6: Route configuration** (AC: 1)
+  - [x] S'assurer que `/` pointe vers `HomePage`
+  - [x] Vérifier que la route est protégée
 
 ---
 
@@ -246,26 +246,33 @@ src/
 ## Dev Agent Record
 
 ### Agent Model Used
-Claude Opus 4.5 (SM Agent - Bob)
+Claude Opus 4.5 (Dev Agent - Amelia)
+
+### Implementation Notes
+- **Header.tsx**: Extracted header with title "Ma Bibliothèque", user email display, and logout button with neo-brutalist shadow styling
+- **EmptyState.tsx**: Welcoming empty state with BookOpen icon, French message, and prominent CTA button
+- **HomePage.tsx**: Restructured to use Header + conditional EmptyState/BookList pattern, ready for Epic 2
 
 ### File List
-_Expected files:_
-- `src/pages/HomePage.tsx`
-- `src/components/Header.tsx`
-- `src/components/EmptyState.tsx`
+- `src/components/Header.tsx` (NEW)
+- `src/components/EmptyState.tsx` (NEW)
+- `src/pages/HomePage.tsx` (MODIFIED - restructured with components)
+
+### Change Log
+- 2025-12-18: Implemented homepage with empty state (Story 1.6)
 
 ---
 
 ## Definition of Done
 
-- [ ] Page d'accueil accessible à `/`
-- [ ] État vide avec message chaleureux
-- [ ] CTA "Ajouter mon premier livre" visible
-- [ ] Header avec titre et bouton déconnexion
-- [ ] Style néo-brutaliste appliqué
-- [ ] Layout mobile-first
-- [ ] Structure prête pour recevoir BookList
-- [ ] Code commité
+- [x] Page d'accueil accessible à `/`
+- [x] État vide avec message chaleureux
+- [x] CTA "Ajouter mon premier livre" visible
+- [x] Header avec titre et bouton déconnexion
+- [x] Style néo-brutaliste appliqué
+- [x] Layout mobile-first
+- [x] Structure prête pour recevoir BookList
+- [x] Code commité (704549d)
 
 ---
 
