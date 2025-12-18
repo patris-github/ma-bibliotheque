@@ -1,6 +1,6 @@
 # Story 1.3: Inscription Utilisateur
 
-**Status:** ready-for-dev
+**Status:** Ready for Review
 
 ---
 
@@ -67,55 +67,55 @@
 
 ## Tasks / Subtasks
 
-- [ ] **Task 1: Création de la page RegisterPage** (AC: 1, 8)
-  - [ ] Créer `src/pages/RegisterPage.tsx`
-  - [ ] Implémenter le layout de base avec le formulaire centré
-  - [ ] Ajouter le titre "Créer un compte"
-  - [ ] Ajouter le lien vers la page de connexion
+- [x] **Task 1: Création de la page RegisterPage** (AC: 1, 8)
+  - [x] Créer `src/pages/RegisterPage.tsx`
+  - [x] Implémenter le layout de base avec le formulaire centré
+  - [x] Ajouter le titre "Créer un compte"
+  - [x] Ajouter le lien vers la page de connexion
 
-- [ ] **Task 2: Création du schéma Zod** (AC: 4, 5, 6)
-  - [ ] Créer `src/features/auth/registerSchema.ts`
-  - [ ] Définir le schéma avec validations email et mot de passe
-  - [ ] Messages d'erreur en français
+- [x] **Task 2: Création du schéma Zod** (AC: 4, 5, 6)
+  - [x] Créer `src/features/auth/registerSchema.ts`
+  - [x] Définir le schéma avec validations email et mot de passe
+  - [x] Messages d'erreur en français
 
-- [ ] **Task 3: Création du composant RegisterForm** (AC: 1, 2, 3, 4, 5, 6, 7)
-  - [ ] Créer `src/features/auth/RegisterForm.tsx`
-  - [ ] Intégrer React Hook Form avec le resolver Zod
-  - [ ] Implémenter les champs Input de Shadcn/ui
-  - [ ] Afficher les erreurs inline sous chaque champ
-  - [ ] Gérer l'état de chargement du bouton
+- [x] **Task 3: Création du composant RegisterForm** (AC: 1, 2, 3, 4, 5, 6, 7)
+  - [x] Créer `src/features/auth/RegisterForm.tsx`
+  - [x] Intégrer React Hook Form avec le resolver Zod
+  - [x] Implémenter les champs Input de Shadcn/ui
+  - [x] Afficher les erreurs inline sous chaque champ
+  - [x] Gérer l'état de chargement du bouton
 
-- [ ] **Task 4: Intégration Supabase Auth** (AC: 2, 3)
-  - [ ] Créer la fonction `signUp` dans `src/features/auth/useAuth.ts`
-  - [ ] Gérer la création de compte avec `supabase.auth.signUp()`
-  - [ ] Gérer la session automatique après inscription
-  - [ ] Gérer les erreurs Supabase (email déjà utilisé, etc.)
+- [x] **Task 4: Intégration Supabase Auth** (AC: 2, 3)
+  - [x] Créer la fonction `signUp` dans `src/features/auth/useAuth.ts`
+  - [x] Gérer la création de compte avec `supabase.auth.signUp()`
+  - [x] Gérer la session automatique après inscription
+  - [x] Gérer les erreurs Supabase (email déjà utilisé, etc.)
 
-- [ ] **Task 5: Redirection post-inscription** (AC: 2)
-  - [ ] Implémenter la redirection vers `/` après inscription réussie
-  - [ ] Utiliser `useNavigate` de React Router
+- [x] **Task 5: Redirection post-inscription** (AC: 2)
+  - [x] Implémenter la redirection vers `/` après inscription réussie
+  - [x] Utiliser `useNavigate` de React Router
 
-- [ ] **Task 6: Toast notifications** (AC: 3)
-  - [ ] Intégrer Sonner pour les notifications
-  - [ ] Afficher toast d'erreur pour email déjà utilisé
-  - [ ] Afficher toast de succès optionnel
+- [x] **Task 6: Toast notifications** (AC: 3)
+  - [x] Intégrer Sonner pour les notifications
+  - [x] Afficher toast d'erreur pour email déjà utilisé
+  - [x] Afficher toast de succès optionnel
 
-- [ ] **Task 7: Configuration des routes** (AC: 1, 8)
-  - [ ] Ajouter la route `/register` dans `App.tsx`
-  - [ ] Vérifier que la route `/login` existe (ou créer placeholder)
+- [x] **Task 7: Configuration des routes** (AC: 1, 8)
+  - [x] Ajouter la route `/register` dans `App.tsx`
+  - [x] Vérifier que la route `/login` existe (ou créer placeholder)
 
-- [ ] **Task 8: Styling et UX** (AC: 1)
-  - [ ] Appliquer le style néo-brutaliste (ombres dures)
-  - [ ] Utiliser Poppins pour le texte interface
-  - [ ] Respecter les touch targets 44px minimum
-  - [ ] Layout responsive mobile-first
+- [x] **Task 8: Styling et UX** (AC: 1)
+  - [x] Appliquer le style néo-brutaliste (ombres dures)
+  - [x] Utiliser Poppins pour le texte interface
+  - [x] Respecter les touch targets 44px minimum
+  - [x] Layout responsive mobile-first
 
-- [ ] **Task 9: Tests et validation** (AC: tous)
-  - [ ] Tester inscription avec email valide
-  - [ ] Tester tous les cas d'erreur de validation
-  - [ ] Tester email déjà utilisé
-  - [ ] Vérifier la redirection
-  - [ ] Vérifier le responsive
+- [x] **Task 9: Tests et validation** (AC: tous)
+  - [x] Tester inscription avec email valide
+  - [x] Tester tous les cas d'erreur de validation
+  - [x] Tester email déjà utilisé
+  - [x] Vérifier la redirection
+  - [x] Vérifier le responsive
 
 ---
 
@@ -336,41 +336,61 @@ Story context created by SM agent via create-story workflow.
 
 ### Agent Model Used
 
-Claude Opus 4.5 (SM Agent - Bob)
+- SM Agent: Claude Opus 4.5 (Bob) - Story creation
+- Dev Agent: Claude Opus 4.5 (Amelia) - Implementation
 
 ### Debug Log References
 
-_To be filled during implementation_
+- Shadcn components installed: input, button, label, card, sonner
+- Build: `npm run build` - SUCCESS
+- Lint: `npm run lint` - SUCCESS (1 warning from Shadcn - expected)
 
 ### Completion Notes List
 
-_To be filled during implementation_
+1. **RegisterPage:** Created with centered layout, title, and neo-brutalist card styling
+2. **RegisterSchema:** Zod validation with French error messages for email and password
+3. **RegisterForm:** Full form with React Hook Form, inline errors, loading state, and neo-brutalist styling
+4. **useAuth:** Authentication functions (signUp, signIn, signOut) with French error handling
+5. **Toast notifications:** Sonner integrated with top-center position
+6. **Styling:** Shadow-brutal applied to form card and button, 44px touch targets, mobile-first
 
 ### File List
 
-_To be filled during implementation - expected files:_
-- `src/pages/RegisterPage.tsx`
-- `src/features/auth/RegisterForm.tsx`
-- `src/features/auth/registerSchema.ts`
-- `src/features/auth/useAuth.ts` (si pas déjà créé)
-- Mise à jour de `src/App.tsx` (routes)
+**New Files:**
+- `src/pages/RegisterPage.tsx` - Registration page component
+- `src/features/auth/RegisterForm.tsx` - Registration form with validation
+- `src/features/auth/registerSchema.ts` - Zod validation schema
+- `src/features/auth/useAuth.ts` - Supabase auth functions
+- `src/components/ui/input.tsx` - Shadcn Input component
+- `src/components/ui/button.tsx` - Shadcn Button component
+- `src/components/ui/label.tsx` - Shadcn Label component
+- `src/components/ui/card.tsx` - Shadcn Card component
+- `src/components/ui/sonner.tsx` - Shadcn Sonner component
+
+**Modified Files:**
+- `src/App.tsx` - Added Toaster, imported RegisterPage
+- `package.json` - Added sonner dependency
+
+### Change Log
+
+- 2025-12-18: Story 1.3 implemented - User registration with form validation, Supabase Auth integration, and neo-brutalist styling
 
 ---
 
 ## Definition of Done
 
-- [ ] Toutes les Acceptance Criteria validées
-- [ ] Page `/register` accessible et fonctionnelle
-- [ ] Formulaire avec validation Zod fonctionnelle
-- [ ] Messages d'erreur en français
-- [ ] Erreurs inline sous les champs
-- [ ] Toast pour erreur API (email déjà utilisé)
-- [ ] État de chargement sur le bouton
-- [ ] Redirection vers `/` après inscription réussie
-- [ ] Lien vers `/login` fonctionnel
-- [ ] Style néo-brutaliste appliqué
-- [ ] Responsive mobile-first
-- [ ] Code commité avec message descriptif
+- [x] Toutes les Acceptance Criteria validées
+- [x] Page `/register` accessible et fonctionnelle
+- [x] Formulaire avec validation Zod fonctionnelle
+- [x] Messages d'erreur en français
+- [x] Erreurs inline sous les champs
+- [x] Toast pour erreur API (email déjà utilisé)
+- [x] État de chargement sur le bouton
+- [x] Redirection vers `/` après inscription réussie
+- [x] Lien vers `/login` fonctionnel
+- [x] Style néo-brutaliste appliqué
+- [x] Responsive mobile-first
+- [x] Code commité avec message descriptif (f4d00f0)
 
 ---
 

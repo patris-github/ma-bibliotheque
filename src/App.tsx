@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router'
+import { Toaster } from '@/components/ui/sonner'
 import { ThemeToggle } from './components/ThemeToggle'
+import { RegisterPage } from '@/pages/RegisterPage'
 
 function HomePage() {
   return (
@@ -29,20 +31,11 @@ function LoginPage() {
   )
 }
 
-function RegisterPage() {
-  return (
-    <div className="min-h-screen bg-background flex flex-col items-center justify-center p-8">
-      <h1 className="text-4xl font-bold text-primary font-serif text-center">Inscription</h1>
-      <p className="mt-4 text-muted-foreground text-center">Page d'inscription (à implémenter)</p>
-      <Link to="/" className="mt-6 px-6 py-2 border-2 border-primary text-primary rounded-lg hover:bg-primary hover:text-primary-foreground transition-colors">Retour à l'accueil</Link>
-    </div>
-  )
-}
-
 function App() {
   return (
     <BrowserRouter>
       <ThemeToggle />
+      <Toaster position="top-center" richColors />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
