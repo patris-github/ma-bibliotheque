@@ -47,7 +47,7 @@ development_status:
   1-1-initialisation-projet-stack-technique: review
   1-2-configuration-supabase-base-de-donnees: review
   1-3-inscription-utilisateur: review
-  1-4-connexion-utilisateur: ready-for-dev
+  1-4-connexion-utilisateur: review
   1-5-gestion-session-deconnexion: ready-for-dev
   1-6-page-accueil-etat-vide: ready-for-dev
   epic-1-retrospective: optional

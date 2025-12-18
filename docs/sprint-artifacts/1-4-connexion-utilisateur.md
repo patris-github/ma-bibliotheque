@@ -1,6 +1,6 @@
 # Story 1.4: Connexion Utilisateur
 
-**Status:** ready-for-dev
+**Status:** Ready for Review
 
 ---
 
@@ -61,45 +61,45 @@
 
 ## Tasks / Subtasks
 
-- [ ] **Task 1: Création de la page LoginPage** (AC: 1, 7)
-  - [ ] Créer `src/pages/LoginPage.tsx`
-  - [ ] Implémenter le layout avec le formulaire centré
-  - [ ] Ajouter le titre "Se connecter"
-  - [ ] Ajouter le lien vers la page d'inscription
+- [x] **Task 1: Création de la page LoginPage** (AC: 1, 7)
+  - [x] Créer `src/pages/LoginPage.tsx`
+  - [x] Implémenter le layout avec le formulaire centré
+  - [x] Ajouter le titre "Se connecter"
+  - [x] Ajouter le lien vers la page d'inscription
 
-- [ ] **Task 2: Création du schéma Zod** (AC: 4, 5)
-  - [ ] Créer `src/features/auth/loginSchema.ts` (ou réutiliser authSchema partagé)
-  - [ ] Définir le schéma avec validations
-  - [ ] Messages d'erreur en français
+- [x] **Task 2: Création du schéma Zod** (AC: 4, 5)
+  - [x] Créer `src/features/auth/loginSchema.ts` (ou réutiliser authSchema partagé)
+  - [x] Définir le schéma avec validations
+  - [x] Messages d'erreur en français
 
-- [ ] **Task 3: Création du composant LoginForm** (AC: 1, 2, 3, 4, 5, 6)
-  - [ ] Créer `src/features/auth/LoginForm.tsx`
-  - [ ] Intégrer React Hook Form avec le resolver Zod
-  - [ ] Implémenter les champs Input de Shadcn/ui
-  - [ ] Afficher les erreurs inline sous chaque champ
-  - [ ] Gérer l'état de chargement du bouton
+- [x] **Task 3: Création du composant LoginForm** (AC: 1, 2, 3, 4, 5, 6)
+  - [x] Créer `src/features/auth/LoginForm.tsx`
+  - [x] Intégrer React Hook Form avec le resolver Zod
+  - [x] Implémenter les champs Input de Shadcn/ui
+  - [x] Afficher les erreurs inline sous chaque champ
+  - [x] Gérer l'état de chargement du bouton
 
-- [ ] **Task 4: Intégration Supabase Auth** (AC: 2, 3)
-  - [ ] Ajouter la fonction `signIn` dans `src/features/auth/useAuth.ts`
-  - [ ] Gérer la connexion avec `supabase.auth.signInWithPassword()`
-  - [ ] Gérer les erreurs Supabase (identifiants incorrects)
+- [x] **Task 4: Intégration Supabase Auth** (AC: 2, 3)
+  - [x] Ajouter la fonction `signIn` dans `src/features/auth/useAuth.ts`
+  - [x] Gérer la connexion avec `supabase.auth.signInWithPassword()`
+  - [x] Gérer les erreurs Supabase (identifiants incorrects)
 
-- [ ] **Task 5: Redirection post-connexion** (AC: 2)
-  - [ ] Implémenter la redirection vers `/` après connexion réussie
-  - [ ] Utiliser `useNavigate` de React Router
+- [x] **Task 5: Redirection post-connexion** (AC: 2)
+  - [x] Implémenter la redirection vers `/` après connexion réussie
+  - [x] Utiliser `useNavigate` de React Router
 
-- [ ] **Task 6: Toast notifications** (AC: 3)
-  - [ ] Afficher toast d'erreur pour identifiants incorrects
-  - [ ] Message en français : "Email ou mot de passe incorrect"
+- [x] **Task 6: Toast notifications** (AC: 3)
+  - [x] Afficher toast d'erreur pour identifiants incorrects
+  - [x] Message en français : "Email ou mot de passe incorrect"
 
-- [ ] **Task 7: Configuration des routes** (AC: 1, 7)
-  - [ ] Ajouter la route `/login` dans `App.tsx`
-  - [ ] Vérifier le lien vers `/register`
+- [x] **Task 7: Configuration des routes** (AC: 1, 7)
+  - [x] Ajouter la route `/login` dans `App.tsx`
+  - [x] Vérifier le lien vers `/register`
 
-- [ ] **Task 8: Styling et UX** (AC: 1)
-  - [ ] Appliquer le style néo-brutaliste
-  - [ ] Layout responsive mobile-first
-  - [ ] Touch targets 44px minimum
+- [x] **Task 8: Styling et UX** (AC: 1)
+  - [x] Appliquer le style néo-brutaliste
+  - [x] Layout responsive mobile-first
+  - [x] Touch targets 44px minimum
 
 ---
 
@@ -181,28 +181,43 @@ src/
 ## Dev Agent Record
 
 ### Agent Model Used
-Claude Opus 4.5 (SM Agent - Bob)
+- SM Agent: Claude Opus 4.5 (Bob) - Story creation
+- Dev Agent: Claude Opus 4.5 (Amelia) - Implementation
+
+### Debug Log References
+- Build: `npm run build` - SUCCESS
+- Lint: `npm run lint` - SUCCESS (1 warning Shadcn - expected)
+
+### Completion Notes
+1. **LoginPage:** Created with centered layout, neo-brutalist card styling
+2. **LoginSchema:** Zod validation with French error messages (email + password required)
+3. **LoginForm:** React Hook Form with inline errors, loading state, password clear on error
+4. **Auth:** Reused signIn function from useAuth.ts (created in Story 1.3)
 
 ### File List
-_Expected files:_
-- `src/pages/LoginPage.tsx`
-- `src/features/auth/LoginForm.tsx`
-- `src/features/auth/loginSchema.ts`
-- Mise à jour `src/features/auth/useAuth.ts`
-- Mise à jour `src/App.tsx`
+**New Files:**
+- `src/pages/LoginPage.tsx` - Login page component
+- `src/features/auth/LoginForm.tsx` - Login form with validation
+- `src/features/auth/loginSchema.ts` - Zod validation schema
+
+**Modified Files:**
+- `src/App.tsx` - Updated to use real LoginPage component
+
+### Change Log
+- 2025-12-18: Story 1.4 implemented - User login with form validation and Supabase Auth
 
 ---
 
 ## Definition of Done
 
-- [ ] Page `/login` accessible et fonctionnelle
-- [ ] Formulaire avec validation Zod
-- [ ] Messages d'erreur en français
-- [ ] Toast pour erreur d'authentification
-- [ ] Redirection vers `/` après connexion
-- [ ] Lien vers `/register` fonctionnel
-- [ ] Style néo-brutaliste appliqué
-- [ ] Code commité
+- [x] Page `/login` accessible et fonctionnelle
+- [x] Formulaire avec validation Zod
+- [x] Messages d'erreur en français
+- [x] Toast pour erreur d'authentification
+- [x] Redirection vers `/` après connexion
+- [x] Lien vers `/register` fonctionnel
+- [x] Style néo-brutaliste appliqué
+- [x] Code commité (a791654)
 
 ---
 
