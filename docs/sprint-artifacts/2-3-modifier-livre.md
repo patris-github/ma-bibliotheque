@@ -1,6 +1,6 @@
 # Story 2.3: Modifier un Livre
 
-**Status:** ready-for-dev
+**Status:** Ready for Review
 
 ---
 
@@ -59,35 +59,35 @@
 
 ## Tasks / Subtasks
 
-- [ ] **Task 1: Modification du BookForm pour le mode édition** (AC: 2, 6)
-  - [ ] Ajouter prop `mode: 'add' | 'edit'`
-  - [ ] Ajouter prop `defaultValues` pour pré-remplir
-  - [ ] Changer le label du bouton selon le mode
-  - [ ] Ajouter bouton "Annuler" en mode édition
+- [x] **Task 1: Modification du BookForm pour le mode édition** (AC: 2, 6)
+  - [x] Ajouter prop `mode: 'add' | 'edit'`
+  - [x] Ajouter prop `defaultValues` pour pré-remplir
+  - [x] Changer le label du bouton selon le mode
+  - [x] Ajouter bouton "Annuler" en mode édition
 
-- [ ] **Task 2: Création du mutation hook useUpdateBook** (AC: 3)
-  - [ ] Ajouter `useUpdateBook` dans `src/features/books/useBooks.ts`
-  - [ ] Utiliser `useMutation` avec `supabase.update()`
-  - [ ] Invalider `['livres']` et `['livre', id]` après succès
+- [x] **Task 2: Création du mutation hook useUpdateBook** (AC: 3)
+  - [x] Ajouter `useUpdateBook` dans `src/features/books/useBooks.ts`
+  - [x] Utiliser `useMutation` avec `supabase.update()`
+  - [x] Invalider `['livres']` et `['livre', id]` après succès
 
-- [ ] **Task 3: Création du EditBookDialog** (AC: 1, 5)
-  - [ ] Créer `src/features/books/EditBookDialog.tsx`
-  - [ ] Recevoir le livre à éditer en prop
-  - [ ] Utiliser BookForm en mode "edit"
-  - [ ] Gérer la fermeture
+- [x] **Task 3: Création du EditBookDialog** (AC: 1, 5)
+  - [x] Créer `src/features/books/EditBookDialog.tsx`
+  - [x] Recevoir le livre à éditer en prop
+  - [x] Utiliser BookForm en mode "edit"
+  - [x] Gérer la fermeture
 
-- [ ] **Task 4: Connexion BookCard → EditDialog** (AC: 1)
-  - [ ] Ajouter onClick sur BookCard
-  - [ ] Ouvrir EditBookDialog avec le livre sélectionné
-  - [ ] Gérer l'état du livre sélectionné dans HomePage
+- [x] **Task 4: Connexion BookCard → EditDialog** (AC: 1)
+  - [x] Ajouter onClick sur BookCard
+  - [x] Ouvrir EditBookDialog avec le livre sélectionné
+  - [x] Gérer l'état du livre sélectionné dans HomePage
 
-- [ ] **Task 5: Animation de célébration** (AC: 4)
-  - [ ] Détecter le changement vers statut "lu"
-  - [ ] Déclencher une animation (confetti léger ou emoji animé)
-  - [ ] Animation courte (1-2 secondes)
+- [x] **Task 5: Animation de célébration** (AC: 4)
+  - [x] Détecter le changement vers statut "lu"
+  - [x] Déclencher une animation (confetti léger ou emoji animé)
+  - [x] Animation courte (1-2 secondes)
 
-- [ ] **Task 6: Toast de succès** (AC: 3)
-  - [ ] Afficher "Livre modifié" après update réussi
+- [x] **Task 6: Toast de succès** (AC: 3)
+  - [x] Afficher "Livre modifié" après update réussi
 
 ---
 
@@ -225,28 +225,55 @@ src/
 ## Dev Agent Record
 
 ### Agent Model Used
-Claude Opus 4.5 (SM Agent - Bob)
+- Story creation: Claude Opus 4.5 (SM Agent - Bob)
+- Implementation: Claude Opus 4.5 (Dev Agent - Amelia)
+
+### Implementation Plan
+1. Extended BookForm with mode/defaultValues/onCancel props
+2. Created useUpdateBook mutation hook with cache invalidation
+3. Created EditBookDialog with Sheet/Dialog responsive pattern
+4. Connected BookList → HomePage → EditBookDialog flow
+5. Added celebration animation on status change to "Lu"
+6. Integrated toast notification for success feedback
+
+### Completion Notes
+- All 6 tasks implemented and validated
+- Build passes (TypeScript strict mode)
+- Lint passes (0 errors, 3 pre-existing warnings)
+- Celebration uses CSS animation (emoji bounce) - lightweight, no external lib
+- Responsive: Sheet on mobile, Dialog on desktop
 
 ### File List
-_Expected files:_
+**Created:**
 - `src/features/books/EditBookDialog.tsx`
-- Mise à jour `src/features/books/BookForm.tsx`
-- Mise à jour `src/features/books/useBooks.ts`
-- Mise à jour `src/pages/HomePage.tsx`
+
+**Modified:**
+- `src/features/books/BookForm.tsx` (added mode, defaultValues, onCancel props)
+- `src/features/books/useBooks.ts` (added useUpdateBook hook)
+- `src/features/books/BookList.tsx` (added onBookClick prop)
+- `src/pages/HomePage.tsx` (added edit dialog state management)
 
 ---
 
 ## Definition of Done
 
-- [ ] Clic sur BookCard ouvre le formulaire d'édition
-- [ ] Données pré-remplies dans le formulaire
-- [ ] BookForm réutilisé en mode "edit"
-- [ ] Mise à jour dans Supabase fonctionnelle
-- [ ] Invalidation du cache après modification
-- [ ] Toast "Livre modifié" affiché
-- [ ] Animation de célébration au passage "Lu"
-- [ ] Bouton Annuler fonctionnel
+- [x] Clic sur BookCard ouvre le formulaire d'édition
+- [x] Données pré-remplies dans le formulaire
+- [x] BookForm réutilisé en mode "edit"
+- [x] Mise à jour dans Supabase fonctionnelle
+- [x] Invalidation du cache après modification
+- [x] Toast "Livre modifié" affiché
+- [x] Animation de célébration au passage "Lu"
+- [x] Bouton Annuler fonctionnel
 - [ ] Code commité
+
+---
+
+## Change Log
+
+| Date | Change | Author |
+|------|--------|--------|
+| 2025-12-29 | Story implementation complete - all ACs satisfied | Dev Agent (Amelia) |
 
 ---
 

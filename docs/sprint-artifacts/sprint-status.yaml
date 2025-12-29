@@ -55,8 +55,8 @@ development_status:
   # Epic 2: Gestion de la Collection de Livres
   epic-2: in-progress
   2-1-affichage-liste-livres: review
-  2-2-ajouter-livre: ready-for-dev
-  2-3-modifier-livre: ready-for-dev
+  2-2-ajouter-livre: review
+  2-3-modifier-livre: review
   2-4-supprimer-livre: ready-for-dev
   2-5-filtrer-par-statut: ready-for-dev
   epic-2-retrospective: optional

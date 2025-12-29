@@ -1,8 +1,12 @@
-import { useBooks } from '@/features/books/useBooks'
+import { useBooks, type Book } from '@/features/books/useBooks'
 import { BookCard } from '@/components/BookCard'
 import { BookCardSkeleton } from '@/components/BookCardSkeleton'
 
-export function BookList() {
+interface BookListProps {
+  onBookClick?: (book: Book) => void
+}
+
+export function BookList({ onBookClick }: BookListProps) {
   const { data: books, isLoading, error } = useBooks()
 
   if (isLoading) {
@@ -35,10 +39,7 @@ export function BookList() {
         <BookCard
           key={book.id}
           book={book}
-          onClick={() => {
-            // Sera connecté à l'édition dans Story 2.3
-            console.log('Éditer livre:', book.id)
-          }}
+          onClick={() => onBookClick?.(book)}
         />
       ))}
     </div>
