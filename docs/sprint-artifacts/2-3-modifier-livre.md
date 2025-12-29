@@ -265,7 +265,7 @@ src/
 - [x] Toast "Livre modifié" affiché
 - [x] Animation de célébration au passage "Lu"
 - [x] Bouton Annuler fonctionnel
-- [ ] Code commité
+- [x] Code commité
 
 ---
 
