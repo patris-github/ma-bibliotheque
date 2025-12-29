@@ -1,4 +1,4 @@
-import type { FilterType } from '@/components/BottomNavigation'
+import type { FilterType } from '@/types'
 
 const filterMessages: Record<FilterType, string> = {
   all: 'Votre bibliothèque est vide.',
@@ -21,7 +21,9 @@ interface FilteredEmptyStateProps {
 export function FilteredEmptyState({ filter }: FilteredEmptyStateProps) {
   return (
     <div className="flex flex-col items-center justify-center py-12 text-center">
-      <span className="text-4xl mb-4">{filterIcons[filter]}</span>
+      <span className="text-4xl mb-4" role="img" aria-hidden="true">
+        {filterIcons[filter]}
+      </span>
       <p className="text-muted-foreground">{filterMessages[filter]}</p>
     </div>
   )

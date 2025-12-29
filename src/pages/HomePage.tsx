@@ -6,7 +6,8 @@ import { useBooks, type Book } from '@/features/books/useBooks'
 import { FAB } from '@/components/FAB'
 import { AddBookDialog } from '@/features/books/AddBookDialog'
 import { EditBookDialog } from '@/features/books/EditBookDialog'
-import { BottomNavigation, type FilterType } from '@/components/BottomNavigation'
+import { BottomNavigation } from '@/components/BottomNavigation'
+import type { FilterType } from '@/types'
 import { FilteredEmptyState } from '@/components/FilteredEmptyState'
 
 export function HomePage() {

@@ -1,6 +1,6 @@
 # Story 2.5: Filtrer par Statut
 
-**Status:** Ready for Review
+**Status:** Done
 
 ---
 
@@ -338,10 +338,40 @@ src/
 
 ---
 
+## Senior Developer Review (AI)
+
+### Review Date: 2025-12-29
+### Reviewer: Dev Agent (Amelia)
+### Outcome: ✅ APPROVED (with fixes applied)
+
+### Issues Found: 6
+
+| ID | Severity | Category | Description | Status |
+|----|----------|----------|-------------|--------|
+| A11Y-01 | Medium | Accessibility | Missing `aria-current` on active nav button | ✅ Fixed |
+| A11Y-02 | Low | Accessibility | Missing `type="button"` attribute | ✅ Fixed |
+| A11Y-03 | Medium | Accessibility | Emoji icons not accessible to screen readers | ✅ Fixed |
+| A11Y-04 | Medium | Accessibility | No visible focus ring on nav buttons | ✅ Fixed |
+| ARCH-01 | Low | Architecture | FilterType exported from component instead of types/ | ✅ Fixed |
+| CSS-01 | Low | CSS | Safe area fallback missing for older browsers | ✅ Fixed |
+
+### Fixes Applied:
+1. Added `aria-current="true"` to active navigation button
+2. Added `type="button"` to all navigation buttons
+3. Added `role="img" aria-hidden="true"` to emoji icons
+4. Added `focus-visible:ring-2` styles for keyboard navigation
+5. Moved `FilterType` to `src/types/index.ts` for better separation
+6. Changed `pb-[env(safe-area-inset-bottom)]` to `pb-[max(0px,env(safe-area-inset-bottom))]`
+
+### Build Status: ✅ Passing
+
+---
+
 ## Change Log
 
 | Date | Change | Author |
 |------|--------|--------|
+| 2025-12-29 | Code review completed - 6 issues fixed | Dev Agent (Amelia) |
 | 2025-12-29 | Story implementation complete - all ACs satisfied | Dev Agent (Amelia) |
 
 ---

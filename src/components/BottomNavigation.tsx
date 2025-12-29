@@ -1,7 +1,8 @@
 import { BookOpen, BookMarked, Clock, CheckCircle } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import type { FilterType } from '@/types'
 
-export type FilterType = 'all' | 'a_lire' | 'en_cours' | 'lu'
+export type { FilterType }
 
 interface NavItem {
   id: FilterType
@@ -23,23 +24,29 @@ interface BottomNavigationProps {
 
 export function BottomNavigation({ activeFilter, onFilterChange }: BottomNavigationProps) {
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-40 bg-background border-t-2 border-border pb-[env(safe-area-inset-bottom)]">
+    <nav className="fixed bottom-0 left-0 right-0 z-40 bg-background border-t-2 border-border pb-[max(0px,env(safe-area-inset-bottom))]">
       <div className="flex justify-around items-center h-16">
-        {navItems.map((item) => (
-          <button
-            key={item.id}
-            onClick={() => onFilterChange(item.id)}
-            className={cn(
-              'flex flex-col items-center justify-center flex-1 h-full gap-1 transition-colors',
-              activeFilter === item.id
-                ? 'text-primary font-medium'
-                : 'text-muted-foreground hover:text-foreground'
-            )}
-          >
-            {item.icon}
-            <span className="text-xs">{item.label}</span>
-          </button>
-        ))}
+        {navItems.map((item) => {
+          const isActive = activeFilter === item.id
+          return (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => onFilterChange(item.id)}
+              aria-current={isActive ? 'true' : undefined}
+              className={cn(
+                'flex flex-col items-center justify-center flex-1 h-full gap-1 transition-colors',
+                'focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+                isActive
+                  ? 'text-primary font-medium'
+                  : 'text-muted-foreground hover:text-foreground'
+              )}
+            >
+              {item.icon}
+              <span className="text-xs">{item.label}</span>
+            </button>
+          )
+        })}
       </div>
     </nav>
   )

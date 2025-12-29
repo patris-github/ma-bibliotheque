@@ -8,3 +8,6 @@ export type Book = Database['public']['Tables']['livres']['Row']
 
 // Status type
 export type StatutLecture = Database['public']['Enums']['statut_lecture']
+
+// Filter type for bottom navigation
+export type FilterType = 'all' | 'a_lire' | 'en_cours' | 'lu'
