@@ -334,7 +334,7 @@ src/
 - [x] Icônes et labels sur chaque onglet
 - [x] Safe area respectée sur mobile
 - [x] Performance < 5 secondes
-- [ ] Code commité
+- [x] Code commité
 
 ---
 
