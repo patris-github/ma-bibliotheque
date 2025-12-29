@@ -1,6 +1,6 @@
 # Story 2.5: Filtrer par Statut
 
-**Status:** ready-for-dev
+**Status:** Ready for Review
 
 ---
 
@@ -66,37 +66,37 @@
 
 ## Tasks / Subtasks
 
-- [ ] **Task 1: Création du composant BottomNavigation** (AC: 1, 2, 6, 7)
-  - [ ] Créer `src/components/BottomNavigation.tsx`
-  - [ ] 4 items : Tous, À lire, En cours, Lu
-  - [ ] Icônes pour chaque item (lucide-react)
-  - [ ] Position fixed bottom avec safe area padding
-  - [ ] État actif visuellement distinct
+- [x] **Task 1: Création du composant BottomNavigation** (AC: 1, 2, 6, 7)
+  - [x] Créer `src/components/BottomNavigation.tsx`
+  - [x] 4 items : Tous, À lire, En cours, Lu
+  - [x] Icônes pour chaque item (lucide-react)
+  - [x] Position fixed bottom avec safe area padding
+  - [x] État actif visuellement distinct
 
-- [ ] **Task 2: Gestion de l'état du filtre** (AC: 2, 3, 4)
-  - [ ] Ajouter état `filter` dans HomePage
-  - [ ] Type : `'all' | 'a_lire' | 'en_cours' | 'lu'`
-  - [ ] Passer le setter à BottomNavigation
+- [x] **Task 2: Gestion de l'état du filtre** (AC: 2, 3, 4)
+  - [x] Ajouter état `filter` dans HomePage
+  - [x] Type : `'all' | 'a_lire' | 'en_cours' | 'lu'`
+  - [x] Passer le setter à BottomNavigation
 
-- [ ] **Task 3: Filtrage côté client** (AC: 3, 4, 8)
-  - [ ] Filtrer la liste des livres avec `useMemo`
-  - [ ] Ne pas refetch les données
-  - [ ] Implémenter la logique de filtrage
+- [x] **Task 3: Filtrage côté client** (AC: 3, 4, 8)
+  - [x] Filtrer la liste des livres avec `useMemo`
+  - [x] Ne pas refetch les données
+  - [x] Implémenter la logique de filtrage
 
-- [ ] **Task 4: États vides filtrés** (AC: 5)
-  - [ ] Créer un composant `FilteredEmptyState`
-  - [ ] Messages personnalisés par filtre
-  - [ ] Style cohérent avec EmptyState global
+- [x] **Task 4: États vides filtrés** (AC: 5)
+  - [x] Créer un composant `FilteredEmptyState`
+  - [x] Messages personnalisés par filtre
+  - [x] Style cohérent avec EmptyState global
 
-- [ ] **Task 5: Styling et animations** (AC: 1, 2)
-  - [ ] Style néo-brutaliste pour la nav
-  - [ ] Transition smooth sur changement d'onglet
-  - [ ] Couleurs par statut (optionnel)
+- [x] **Task 5: Styling et animations** (AC: 1, 2)
+  - [x] Style néo-brutaliste pour la nav
+  - [x] Transition smooth sur changement d'onglet
+  - [x] Couleurs par statut (optionnel)
 
-- [ ] **Task 6: Intégration dans HomePage** (AC: 1, 3)
-  - [ ] Ajouter BottomNavigation dans le layout
-  - [ ] Connecter le filtre à BookList
-  - [ ] Ajuster le padding-bottom du contenu principal
+- [x] **Task 6: Intégration dans HomePage** (AC: 1, 3)
+  - [x] Ajouter BottomNavigation dans le layout
+  - [x] Connecter le filtre à BookList
+  - [x] Ajuster le padding-bottom du contenu principal
 
 ---
 
@@ -294,29 +294,55 @@ src/
 ## Dev Agent Record
 
 ### Agent Model Used
-Claude Opus 4.5 (SM Agent - Bob)
+- Story creation: Claude Opus 4.5 (SM Agent - Bob)
+- Implementation: Claude Opus 4.5 (Dev Agent - Amelia)
+
+### Implementation Plan
+1. Created BottomNavigation with 4 filter tabs and lucide-react icons
+2. Added filter state in HomePage with FilterType union type
+3. Implemented client-side filtering with useMemo (no server refetch)
+4. Created FilteredEmptyState with contextual messages per filter
+5. Modified BookList to accept filtered books as prop
+6. Integrated everything in HomePage with proper padding
+
+### Completion Notes
+- All 6 tasks implemented and validated
+- Build passes (TypeScript strict mode)
+- Filtrage 100% côté client avec useMemo - instantané
+- Safe area via env(safe-area-inset-bottom)
+- Bottom Navigation z-40, FAB z-50 pour proper layering
 
 ### File List
-_Expected files:_
+**Created:**
 - `src/components/BottomNavigation.tsx`
 - `src/components/FilteredEmptyState.tsx`
-- Mise à jour `src/pages/HomePage.tsx`
-- Mise à jour `src/index.css` (safe area)
+
+**Modified:**
+- `src/pages/HomePage.tsx` (filter state, useMemo, BottomNavigation integration)
+- `src/features/books/BookList.tsx` (accepts books prop for filtered data)
 
 ---
 
 ## Definition of Done
 
-- [ ] Bottom Navigation avec 4 onglets visible
-- [ ] Onglet actif visuellement distinct
-- [ ] "Tous" actif par défaut
-- [ ] Filtrage fonctionne pour chaque statut
-- [ ] Pas de requête serveur au changement de filtre
-- [ ] États vides filtrés avec messages contextuels
-- [ ] Icônes et labels sur chaque onglet
-- [ ] Safe area respectée sur mobile
-- [ ] Performance < 5 secondes
+- [x] Bottom Navigation avec 4 onglets visible
+- [x] Onglet actif visuellement distinct
+- [x] "Tous" actif par défaut
+- [x] Filtrage fonctionne pour chaque statut
+- [x] Pas de requête serveur au changement de filtre
+- [x] États vides filtrés avec messages contextuels
+- [x] Icônes et labels sur chaque onglet
+- [x] Safe area respectée sur mobile
+- [x] Performance < 5 secondes
 - [ ] Code commité
+
+---
+
+## Change Log
+
+| Date | Change | Author |
+|------|--------|--------|
+| 2025-12-29 | Story implementation complete - all ACs satisfied | Dev Agent (Amelia) |
 
 ---
 
