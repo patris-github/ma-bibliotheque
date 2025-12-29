@@ -263,7 +263,7 @@ src/
 - [x] Toast "Livre supprimé" affiché
 - [x] Fermeture des dialogs après suppression
 - [x] Annulation fonctionne correctement
-- [ ] Code commité
+- [x] Code commité
 
 ---
 
