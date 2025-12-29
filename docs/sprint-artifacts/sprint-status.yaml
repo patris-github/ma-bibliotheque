@@ -43,13 +43,13 @@ story_location: docs/sprint-artifacts
 
 development_status:
   # Epic 1: Accès Utilisateur et Authentification
-  epic-1: in-progress
-  1-1-initialisation-projet-stack-technique: review
-  1-2-configuration-supabase-base-de-donnees: review
-  1-3-inscription-utilisateur: review
-  1-4-connexion-utilisateur: review
-  1-5-gestion-session-deconnexion: review
-  1-6-page-accueil-etat-vide: review
+  epic-1: done
+  1-1-initialisation-projet-stack-technique: done
+  1-2-configuration-supabase-base-de-donnees: done
+  1-3-inscription-utilisateur: done
+  1-4-connexion-utilisateur: done
+  1-5-gestion-session-deconnexion: done
+  1-6-page-accueil-etat-vide: done
   epic-1-retrospective: optional
 
   # Epic 2: Gestion de la Collection de Livres

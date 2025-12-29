@@ -1,6 +1,6 @@
 # Story 1.5: Gestion de Session et Déconnexion
 
-**Status:** Ready for Review
+**Status:** Done
 
 ---
 

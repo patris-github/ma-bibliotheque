@@ -1,6 +1,6 @@
 # Story 1.1: Initialisation du Projet avec Stack Technique
 
-**Status:** Ready for Review
+**Status:** Done
 
 ---
 

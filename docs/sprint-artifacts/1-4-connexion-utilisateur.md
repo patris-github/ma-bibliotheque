@@ -1,6 +1,6 @@
 # Story 1.4: Connexion Utilisateur
 
-**Status:** Ready for Review
+**Status:** Done
 
 ---
 

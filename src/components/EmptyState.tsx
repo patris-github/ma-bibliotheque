@@ -11,7 +11,7 @@ export function EmptyState({ onAddBook }: EmptyStateProps) {
       <div className="space-y-6 max-w-sm">
         {/* Icon */}
         <div className="mx-auto w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center border-2 border-foreground shadow-brutal">
-          <BookOpen className="w-12 h-12 text-primary" />
+          <BookOpen className="w-12 h-12 text-primary" aria-hidden="true" />
         </div>
 
         {/* Welcome message */}

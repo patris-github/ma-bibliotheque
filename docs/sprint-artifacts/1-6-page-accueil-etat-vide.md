@@ -1,6 +1,6 @@
 # Story 1.6: Page d'Accueil avec État Vide
 
-**Status:** Ready for Review
+**Status:** Done
 
 ---
 

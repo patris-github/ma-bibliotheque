@@ -1,6 +1,6 @@
 # Story 1.2: Configuration Supabase et Base de Données
 
-**Status:** Ready for Review
+**Status:** Done
 
 ---
 

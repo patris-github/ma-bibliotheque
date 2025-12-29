@@ -52,11 +52,13 @@ export function RegisterForm() {
           placeholder="votre@email.com"
           autoComplete="email"
           disabled={isLoading}
+          aria-describedby={errors.email ? 'email-error' : undefined}
+          aria-invalid={errors.email ? 'true' : undefined}
           className="h-11 border-2 border-primary focus:shadow-[var(--shadow-brutal)] focus:shadow-primary/30"
           {...register('email')}
         />
         {errors.email && (
-          <p className="text-sm text-destructive mt-1">
+          <p id="email-error" className="text-sm text-destructive mt-1" role="alert">
             {errors.email.message}
           </p>
         )}
@@ -70,11 +72,13 @@ export function RegisterForm() {
           placeholder="••••••••"
           autoComplete="new-password"
           disabled={isLoading}
+          aria-describedby={errors.password ? 'password-error' : undefined}
+          aria-invalid={errors.password ? 'true' : undefined}
           className="h-11 border-2 border-primary focus:shadow-[var(--shadow-brutal)] focus:shadow-primary/30"
           {...register('password')}
         />
         {errors.password && (
-          <p className="text-sm text-destructive mt-1">
+          <p id="password-error" className="text-sm text-destructive mt-1" role="alert">
             {errors.password.message}
           </p>
         )}

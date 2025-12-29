@@ -31,8 +31,9 @@ export function Header() {
             size="sm"
             onClick={handleSignOut}
             className="gap-2 border-2 border-foreground shadow-brutal hover:shadow-none transition-shadow"
+            aria-label="Déconnexion"
           >
-            <LogOut className="h-4 w-4" />
+            <LogOut className="h-4 w-4" aria-hidden="true" />
             <span className="hidden sm:inline">Déconnexion</span>
           </Button>
         </div>

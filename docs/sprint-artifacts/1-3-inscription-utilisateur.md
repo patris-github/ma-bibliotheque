@@ -1,6 +1,6 @@
 # Story 1.3: Inscription Utilisateur
 
-**Status:** Ready for Review
+**Status:** Done
 
 ---
 
