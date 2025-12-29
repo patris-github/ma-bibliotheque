@@ -1,6 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/features/auth/AuthContext'
+import { fetchBookCover } from '@/lib/openLibrary'
 import type { Database } from '@/types/database'
 import type { BookFormData } from '@/features/books/bookSchema'
 
@@ -31,10 +32,14 @@ export function useAddBook() {
         throw new Error('Utilisateur non connecté')
       }
 
+      // Fetch cover from Open Library
+      const cover_url = await fetchBookCover(data.titre, data.auteur)
+
       const { data: book, error } = await supabase
         .from('livres')
         .insert({
           ...data,
+          cover_url,
           user_id: user.id,
         })
         .select()
@@ -49,14 +54,31 @@ export function useAddBook() {
   })
 }
 
+interface UpdateBookParams {
+  id: string
+  data: Partial<BookFormData>
+  originalBook: Book
+}
+
 export function useUpdateBook() {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: async ({ id, data }: { id: string; data: Partial<BookFormData> }) => {
+    mutationFn: async ({ id, data, originalBook }: UpdateBookParams) => {
+      // Check if title or author changed - if so, fetch new cover
+      const titleChanged = data.titre && data.titre !== originalBook.titre
+      const authorChanged = data.auteur && data.auteur !== originalBook.auteur
+
+      let cover_url = originalBook.cover_url
+      if (titleChanged || authorChanged) {
+        const newTitre = data.titre || originalBook.titre
+        const newAuteur = data.auteur || originalBook.auteur
+        cover_url = await fetchBookCover(newTitre, newAuteur)
+      }
+
       const { data: book, error } = await supabase
         .from('livres')
-        .update(data)
+        .update({ ...data, cover_url })
         .eq('id', id)
         .select()
         .single()

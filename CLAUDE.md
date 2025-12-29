@@ -32,6 +32,7 @@ The `livres` table contains:
 - `titre` (String) - required
 - `auteur` (String) - required
 - `statut` (Enum) - "a_lire" | "en_cours" | "lu"
+- `cover_url` (String, nullable) - Open Library cover URL
 - `created_at`, `updated_at` (Timestamp)
 
 ## Critical Implementation Rules
@@ -90,7 +91,7 @@ src/
 | `docs/prd/` | Product Requirements Document (10 sections) |
 | `docs/architecture.md` | Architecture decisions, patterns, structure |
 | `docs/ux-design-specification.md` | UX patterns, colors, typography |
-| `docs/epics.md` | Epic & story breakdown (11 stories) |
+| `docs/epics.md` | Epic & story breakdown (12 stories) |
 | `docs/project_context.md` | Critical rules for AI agents |
 
 ## Epic Structure
@@ -103,12 +104,13 @@ src/
 - Story 1.5: Session management & logout
 - Story 1.6: Homepage with empty state
 
-### Epic 2: Book Collection Management (5 stories)
+### Epic 2: Book Collection Management (6 stories)
 - Story 2.1: Book list display
 - Story 2.2: Add book
 - Story 2.3: Edit book
 - Story 2.4: Delete book
 - Story 2.5: Filter by status
+- Story 2.6: Display book covers (Open Library API)
 
 ## BMAD Method Integration
 
@@ -147,6 +149,7 @@ This project uses the BMAD Method v6 for AI-driven development. The `.bmad/` fol
 3. Edit existing books
 4. Delete books with confirmation
 5. Filter by reading status (Bottom Navigation)
+6. Display book covers (via Open Library API)
 
 ## UX Design Notes
 
@@ -159,11 +162,13 @@ This project uses the BMAD Method v6 for AI-driven development. The `.bmad/` fol
 
 ## Explicitly Out of Scope
 
-- External API book search (Google Books, Open Library)
-- Cover images
+- External API book **search** (searching/adding books from external APIs)
+- Cover image **uploads** (custom images stored in Supabase)
 - Multi-user sharing
 - Detailed notes/reviews
 - Barcode/ISBN scanning
 - Book categories/genres
 - Lending system
 - Recommendations
+
+**Note:** Book cover **display** via Open Library API is IN scope (Story 2.6). Only cover uploads are excluded.

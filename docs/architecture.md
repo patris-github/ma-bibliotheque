@@ -537,6 +537,48 @@ Supabase (PostgreSQL)
 - Supabase Auth (authentification)
 - Supabase Database (stockage)
 - Vercel (déploiement)
+- Open Library API (couvertures de livres)
+
+### Open Library Integration (v1.1)
+
+**Purpose:** Récupération automatique des couvertures de livres pour améliorer l'UX visuelle.
+
+**API Endpoints:**
+```
+# Recherche par titre + auteur
+https://openlibrary.org/search.json?title={titre}&author={auteur}&limit=1
+
+# URL de couverture (une fois l'OLID obtenu)
+https://covers.openlibrary.org/b/olid/{OLID}-M.jpg
+```
+
+**Tailles disponibles:** S (small), M (medium), L (large)
+
+**Implementation Pattern:**
+```typescript
+// Hook: features/books/useBookCover.ts
+const useBookCover = (titre: string, auteur: string) => {
+  return useQuery({
+    queryKey: ['cover', titre, auteur],
+    queryFn: () => fetchCoverFromOpenLibrary(titre, auteur),
+    staleTime: Infinity, // Les couvertures ne changent pas
+    retry: 1,
+  })
+}
+```
+
+**Fallback Strategy:**
+- Si couverture non trouvée → Placeholder stylisé avec initiales titre/auteur
+- Si erreur réseau → Placeholder avec message discret
+
+**Database Change:**
+- Ajout colonne `cover_url` (text, nullable) dans table `livres`
+- Stocke l'URL Open Library pour éviter requêtes répétées
+
+**Constraints:**
+- Pas de stockage d'images (URLs externes uniquement)
+- Pas de rate limiting côté client (API Open Library gratuite)
+- Fallback obligatoire pour UX gracieuse
 
 ### File Organization Patterns
 

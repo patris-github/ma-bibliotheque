@@ -424,6 +424,50 @@ This document provides the complete epic and story breakdown for Ma Bibliothèqu
 
 ---
 
+### Story 2.6 : Afficher les Couvertures de Livres
+
+**As a** utilisateur connecté,
+**I want** voir la couverture de mes livres sur chaque carte,
+**So that** je puisse reconnaître mes livres visuellement et rendre ma collection plus attrayante.
+
+**Acceptance Criteria:**
+
+**Given** je consulte ma liste de livres
+**When** un livre a une couverture disponible sur Open Library
+**Then** la couverture s'affiche sur la BookCard (taille M)
+**And** l'image est chargée depuis l'URL externe Open Library
+
+**Given** un livre est ajouté ou modifié
+**When** le formulaire est soumis
+**Then** une recherche automatique de couverture est effectuée via Open Library API
+**And** l'URL de couverture est stockée dans le champ `cover_url` de la table `livres`
+
+**Given** aucune couverture n'est trouvée sur Open Library
+**When** la carte du livre s'affiche
+**Then** un placeholder stylisé s'affiche avec les initiales du titre
+**And** le placeholder suit le style néo-brutaliste (couleur basée sur le statut)
+
+**Given** la couverture est en cours de chargement
+**When** la carte s'affiche
+**Then** un Skeleton de la taille de l'image s'affiche
+
+**Given** une erreur réseau survient lors du chargement de l'image
+**When** l'image échoue à charger
+**Then** le placeholder s'affiche à la place (fallback gracieux)
+
+**Technical Notes:**
+- API Open Library : `https://openlibrary.org/search.json?title={titre}&author={auteur}&limit=1`
+- URL couverture : `https://covers.openlibrary.org/b/olid/{OLID}-M.jpg`
+- Migration DB : Ajouter colonne `cover_url` (text, nullable) à la table `livres`
+- Hook : `useBookCover.ts` avec TanStack Query (staleTime: Infinity)
+- Composant : `BookCover.tsx` avec gestion erreur `onError`
+
+**And** le hook `useBookCover` utilise TanStack Query avec cache infini
+**And** les images utilisent `loading="lazy"` pour optimiser le chargement
+**And** un composant `BookCoverPlaceholder` gère le fallback visuel
+
+---
+
 ## Validation et Résumé
 
 ### Couverture des Exigences
@@ -446,9 +490,9 @@ This document provides the complete epic and story breakdown for Ma Bibliothèqu
 | Métrique | Valeur |
 |----------|--------|
 | Epics | 2 |
-| Stories totales | 11 |
+| Stories totales | 12 |
 | Epic 1 stories | 6 |
-| Epic 2 stories | 5 |
+| Epic 2 stories | 6 |
 
 ### Séquence d'Implémentation Recommandée
 
@@ -456,7 +500,7 @@ This document provides the complete epic and story breakdown for Ma Bibliothèqu
    - Story 1.1 → 1.2 → 1.3 → 1.4 → 1.5 → 1.6
 
 2. **Epic 2** : Gestion de la Collection de Livres
-   - Story 2.1 → 2.2 → 2.3 → 2.4 → 2.5
+   - Story 2.1 → 2.2 → 2.3 → 2.4 → 2.5 → 2.6
 
 ### Document Status
 

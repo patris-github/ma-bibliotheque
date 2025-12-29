@@ -44,7 +44,7 @@ export function EditBookDialog({ book, open, onOpenChange }: EditBookDialogProps
       const wasNotLu = book.statut !== 'lu'
       const isNowLu = data.statut === 'lu'
 
-      await updateBook.mutateAsync({ id: book.id, data })
+      await updateBook.mutateAsync({ id: book.id, data, originalBook: book })
 
       // Célébration si passage à "Lu"
       if (wasNotLu && isNowLu) {
