@@ -66,3 +66,21 @@ export function useUpdateBook() {
     },
   })
 }
+
+export function useDeleteBook() {
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: async (id: string) => {
+      const { error } = await supabase
+        .from('livres')
+        .delete()
+        .eq('id', id)
+
+      if (error) throw error
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['livres'] })
+    },
+  })
+}

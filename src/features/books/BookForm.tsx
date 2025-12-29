@@ -17,6 +17,7 @@ interface BookFormProps {
   defaultValues?: BookFormData
   onSubmit: (data: BookFormData) => void
   onCancel?: () => void
+  onDelete?: () => void
   isLoading?: boolean
 }
 
@@ -25,6 +26,7 @@ export function BookForm({
   defaultValues,
   onSubmit,
   onCancel,
+  onDelete,
   isLoading = false,
 }: BookFormProps) {
   const {
@@ -93,26 +95,40 @@ export function BookForm({
         )}
       </div>
 
-      <div className="flex gap-2 justify-end pt-2">
-        {mode === 'edit' && onCancel && (
+      <div className="flex gap-2 justify-between pt-2">
+        {mode === 'edit' && onDelete ? (
           <Button
             type="button"
-            variant="outline"
-            onClick={onCancel}
+            variant="destructive"
+            onClick={onDelete}
             disabled={isLoading}
           >
-            Annuler
+            Supprimer
           </Button>
+        ) : (
+          <div />
         )}
-        <Button type="submit" className={mode === 'add' ? 'w-full' : ''} disabled={isLoading}>
-          {isLoading
-            ? mode === 'add'
-              ? 'Ajout en cours...'
-              : 'Enregistrement...'
-            : mode === 'add'
-              ? 'Ajouter'
-              : 'Enregistrer'}
-        </Button>
+        <div className="flex gap-2">
+          {mode === 'edit' && onCancel && (
+            <Button
+              type="button"
+              variant="outline"
+              onClick={onCancel}
+              disabled={isLoading}
+            >
+              Annuler
+            </Button>
+          )}
+          <Button type="submit" className={mode === 'add' ? 'w-full' : ''} disabled={isLoading}>
+            {isLoading
+              ? mode === 'add'
+                ? 'Ajout en cours...'
+                : 'Enregistrement...'
+              : mode === 'add'
+                ? 'Ajouter'
+                : 'Enregistrer'}
+          </Button>
+        </div>
       </div>
     </form>
   )

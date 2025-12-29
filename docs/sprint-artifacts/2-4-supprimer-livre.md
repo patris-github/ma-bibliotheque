@@ -1,6 +1,6 @@
 # Story 2.4: Supprimer un Livre
 
-**Status:** ready-for-dev
+**Status:** Ready for Review
 
 ---
 
@@ -50,30 +50,30 @@
 
 ## Tasks / Subtasks
 
-- [ ] **Task 1: Création du mutation hook useDeleteBook** (AC: 3)
-  - [ ] Ajouter `useDeleteBook` dans `src/features/books/useBooks.ts`
-  - [ ] Utiliser `useMutation` avec `supabase.delete()`
-  - [ ] Invalider `['livres']` après succès
+- [x] **Task 1: Création du mutation hook useDeleteBook** (AC: 3)
+  - [x] Ajouter `useDeleteBook` dans `src/features/books/useBooks.ts`
+  - [x] Utiliser `useMutation` avec `supabase.delete()`
+  - [x] Invalider `['livres']` après succès
 
-- [ ] **Task 2: Création du composant DeleteBookDialog** (AC: 2, 4, 5)
-  - [ ] Créer `src/features/books/DeleteBookDialog.tsx`
-  - [ ] Utiliser AlertDialog de Shadcn/ui
-  - [ ] Afficher le message de confirmation avec le titre du livre
-  - [ ] Boutons "Annuler" et "Supprimer"
-  - [ ] Style destructive pour le bouton Supprimer
+- [x] **Task 2: Création du composant DeleteBookDialog** (AC: 2, 4, 5)
+  - [x] Créer `src/features/books/DeleteBookDialog.tsx`
+  - [x] Utiliser AlertDialog de Shadcn/ui
+  - [x] Afficher le message de confirmation avec le titre du livre
+  - [x] Boutons "Annuler" et "Supprimer"
+  - [x] Style destructive pour le bouton Supprimer
 
-- [ ] **Task 3: Ajout du bouton Supprimer dans BookForm** (AC: 1)
-  - [ ] Ajouter bouton "Supprimer" dans BookForm (mode edit uniquement)
-  - [ ] Style `variant="destructive"`
-  - [ ] Déclencher l'ouverture du DeleteBookDialog
+- [x] **Task 3: Ajout du bouton Supprimer dans BookForm** (AC: 1)
+  - [x] Ajouter bouton "Supprimer" dans BookForm (mode edit uniquement)
+  - [x] Style `variant="destructive"`
+  - [x] Déclencher l'ouverture du DeleteBookDialog
 
-- [ ] **Task 4: Intégration dans EditBookDialog** (AC: 1, 3, 4)
-  - [ ] Gérer l'état du DeleteBookDialog
-  - [ ] Fermer EditBookDialog après suppression réussie
-  - [ ] Callback onDelete pour fermer les deux dialogs
+- [x] **Task 4: Intégration dans EditBookDialog** (AC: 1, 3, 4)
+  - [x] Gérer l'état du DeleteBookDialog
+  - [x] Fermer EditBookDialog après suppression réussie
+  - [x] Callback onDelete pour fermer les deux dialogs
 
-- [ ] **Task 5: Toast de confirmation** (AC: 3)
-  - [ ] Afficher "Livre supprimé" après delete réussi
+- [x] **Task 5: Toast de confirmation** (AC: 3)
+  - [x] Afficher "Livre supprimé" après delete réussi
 
 ---
 
@@ -224,28 +224,54 @@ src/
 ## Dev Agent Record
 
 ### Agent Model Used
-Claude Opus 4.5 (SM Agent - Bob)
+- Story creation: Claude Opus 4.5 (SM Agent - Bob)
+- Implementation: Claude Opus 4.5 (Dev Agent - Amelia)
+
+### Implementation Plan
+1. Created useDeleteBook mutation hook with cache invalidation
+2. Created DeleteBookDialog with AlertDialog from Shadcn/ui
+3. Added Supprimer button (destructive) to BookForm in edit mode
+4. Integrated delete flow in EditBookDialog
+5. Added toast notification for success/error feedback
+
+### Completion Notes
+- All 5 tasks implemented and validated
+- Build passes (TypeScript strict mode)
+- AlertDialog installed via shadcn CLI
+- Bouton Supprimer positionné à gauche (séparé des boutons Annuler/Enregistrer)
+- Confirmation dialog shows book title for clarity
 
 ### File List
-_Expected files:_
+**Created:**
 - `src/features/books/DeleteBookDialog.tsx`
-- Mise à jour `src/features/books/BookForm.tsx`
-- Mise à jour `src/features/books/EditBookDialog.tsx`
-- Mise à jour `src/features/books/useBooks.ts`
+- `src/components/ui/alert-dialog.tsx` (via shadcn)
+
+**Modified:**
+- `src/features/books/useBooks.ts` (added useDeleteBook hook)
+- `src/features/books/BookForm.tsx` (added onDelete prop and Supprimer button)
+- `src/features/books/EditBookDialog.tsx` (integrated delete flow)
 
 ---
 
 ## Definition of Done
 
-- [ ] Bouton "Supprimer" visible en mode édition
-- [ ] AlertDialog de confirmation affiché
-- [ ] Message explicite avec titre du livre
-- [ ] Suppression dans Supabase fonctionnelle
-- [ ] Invalidation du cache après suppression
-- [ ] Toast "Livre supprimé" affiché
-- [ ] Fermeture des dialogs après suppression
-- [ ] Annulation fonctionne correctement
+- [x] Bouton "Supprimer" visible en mode édition
+- [x] AlertDialog de confirmation affiché
+- [x] Message explicite avec titre du livre
+- [x] Suppression dans Supabase fonctionnelle
+- [x] Invalidation du cache après suppression
+- [x] Toast "Livre supprimé" affiché
+- [x] Fermeture des dialogs après suppression
+- [x] Annulation fonctionne correctement
 - [ ] Code commité
+
+---
+
+## Change Log
+
+| Date | Change | Author |
+|------|--------|--------|
+| 2025-12-29 | Story implementation complete - all ACs satisfied | Dev Agent (Amelia) |
 
 ---
 

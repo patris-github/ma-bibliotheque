@@ -57,6 +57,6 @@ development_status:
   2-1-affichage-liste-livres: review
   2-2-ajouter-livre: review
   2-3-modifier-livre: review
-  2-4-supprimer-livre: ready-for-dev
+  2-4-supprimer-livre: review
   2-5-filtrer-par-statut: ready-for-dev
   epic-2-retrospective: optional

@@ -12,7 +12,8 @@ import {
   SheetTitle,
 } from '@/components/ui/sheet'
 import { BookForm } from '@/features/books/BookForm'
-import { useUpdateBook, type Book } from '@/features/books/useBooks'
+import { DeleteBookDialog } from '@/features/books/DeleteBookDialog'
+import { useUpdateBook, useDeleteBook, type Book } from '@/features/books/useBooks'
 import type { BookFormData } from '@/features/books/bookSchema'
 import { toast } from 'sonner'
 
@@ -25,7 +26,9 @@ interface EditBookDialogProps {
 export function EditBookDialog({ book, open, onOpenChange }: EditBookDialogProps) {
   const [isMobile, setIsMobile] = useState(false)
   const [showCelebration, setShowCelebration] = useState(false)
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)
   const updateBook = useUpdateBook()
+  const deleteBook = useDeleteBook()
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768)
@@ -60,6 +63,21 @@ export function EditBookDialog({ book, open, onOpenChange }: EditBookDialogProps
     onOpenChange(false)
   }
 
+  const handleDelete = () => {
+    setIsDeleteDialogOpen(true)
+  }
+
+  const handleConfirmDelete = async () => {
+    try {
+      await deleteBook.mutateAsync(book.id)
+      toast.success('Livre supprimé')
+      setIsDeleteDialogOpen(false)
+      onOpenChange(false)
+    } catch {
+      toast.error('Erreur lors de la suppression du livre')
+    }
+  }
+
   const defaultValues: BookFormData = {
     titre: book.titre,
     auteur: book.auteur,
@@ -73,7 +91,8 @@ export function EditBookDialog({ book, open, onOpenChange }: EditBookDialogProps
         defaultValues={defaultValues}
         onSubmit={handleSubmit}
         onCancel={handleCancel}
-        isLoading={updateBook.isPending}
+        onDelete={handleDelete}
+        isLoading={updateBook.isPending || deleteBook.isPending}
       />
       {showCelebration && (
         <div className="fixed inset-0 pointer-events-none flex items-center justify-center z-50">
@@ -82,6 +101,13 @@ export function EditBookDialog({ book, open, onOpenChange }: EditBookDialogProps
           </div>
         </div>
       )}
+      <DeleteBookDialog
+        open={isDeleteDialogOpen}
+        onOpenChange={setIsDeleteDialogOpen}
+        bookTitle={book.titre}
+        onConfirm={handleConfirmDelete}
+        isLoading={deleteBook.isPending}
+      />
     </>
   )
 
