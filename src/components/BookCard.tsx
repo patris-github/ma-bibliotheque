@@ -8,10 +8,20 @@ interface BookCardProps {
 }
 
 export function BookCard({ book, onClick }: BookCardProps) {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      onClick?.()
+    }
+  }
+
   return (
     <Card
-      className="cursor-pointer border-2 border-border rounded-[0.4rem] shadow-[var(--shadow-brutal)] hover:shadow-[var(--shadow-brutal-hover)] transition-shadow"
+      role="button"
+      tabIndex={0}
+      className="cursor-pointer border-2 border-border rounded-[0.4rem] shadow-[var(--shadow-brutal)] hover:shadow-[var(--shadow-brutal-hover)] transition-shadow focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
       onClick={onClick}
+      onKeyDown={handleKeyDown}
     >
       <CardContent className="p-4">
         <div className="flex justify-between items-start gap-2">

@@ -1,6 +1,6 @@
 # Story 2.1: Affichage de la Liste des Livres
 
-**Status:** Ready for Review
+**Status:** Done
 
 ---
 
@@ -330,7 +330,29 @@ book.status
 - [x] Layout responsive (1/2/3 colonnes)
 - [x] Scroll fluide sans pagination
 - [x] Données en snake_case (pas de conversion)
-- [ ] Code commité
+- [x] Code commité
+
+---
+
+## Senior Developer Review (AI)
+
+### Review Date: 2025-12-29
+### Reviewer: Dev Agent (Amelia)
+### Outcome: ✅ APPROVED (with fixes applied)
+
+### Issues Found: 2
+
+| ID | Severity | Category | Description | Status |
+|----|----------|----------|-------------|--------|
+| A11Y-02 | High | Accessibility | BookCard not keyboard accessible | ✅ Fixed |
+| A11Y-03 | Medium | Accessibility | No focus ring on BookCard | ✅ Fixed |
+
+### Fixes Applied:
+1. Added `role="button"` and `tabIndex={0}` to BookCard
+2. Added keyboard handler for Enter and Space keys
+3. Added `focus-visible:ring-2` styles for keyboard navigation
+
+### Build Status: ✅ Passing
 
 ---
 
@@ -338,6 +360,7 @@ book.status
 
 | Date | Description |
 |------|-------------|
+| 2025-12-29 | Code review completed - 2 issues fixed |
 | 2025-12-18 | Story implémentée - Tous les composants créés et intégrés |
 
 ---

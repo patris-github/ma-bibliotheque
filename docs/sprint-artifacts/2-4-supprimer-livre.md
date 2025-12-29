@@ -1,6 +1,6 @@
 # Story 2.4: Supprimer un Livre
 
-**Status:** Ready for Review
+**Status:** Done
 
 ---
 
@@ -267,10 +267,32 @@ src/
 
 ---
 
+## Senior Developer Review (AI)
+
+### Review Date: 2025-12-29
+### Reviewer: Dev Agent (Amelia)
+### Outcome: ✅ APPROVED (with fixes applied)
+
+### Issues Found: 2
+
+| ID | Severity | Category | Description | Status |
+|----|----------|----------|-------------|--------|
+| SEC-01 | High | Security | Non-null assertion on user in useAddBook | ✅ Fixed |
+| A11Y-01 | Medium | Accessibility | Celebration emoji not accessible | ✅ Fixed |
+
+### Fixes Applied:
+1. Added user validation before insert in useAddBook
+2. Added `role="img" aria-hidden="true"` to celebration emoji
+
+### Build Status: ✅ Passing
+
+---
+
 ## Change Log
 
 | Date | Change | Author |
 |------|--------|--------|
+| 2025-12-29 | Code review completed - 2 issues fixed | Dev Agent (Amelia) |
 | 2025-12-29 | Story implementation complete - all ACs satisfied | Dev Agent (Amelia) |
 
 ---

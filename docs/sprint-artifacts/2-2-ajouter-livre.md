@@ -1,6 +1,6 @@
 # Story 2.2: Ajouter un Livre
 
-**Status:** ready-for-dev
+**Status:** Done
 
 ---
 
@@ -61,48 +61,48 @@
 
 ## Tasks / Subtasks
 
-- [ ] **Task 1: Création du composant FAB** (AC: 1)
-  - [ ] Créer `src/components/FAB.tsx`
-  - [ ] Position fixed, bottom-right
-  - [ ] Taille 56px, couleur primary
-  - [ ] Icône + (Plus)
-  - [ ] Ombre dure néo-brutaliste
-  - [ ] Z-index au-dessus de tout
+- [x] **Task 1: Création du composant FAB** (AC: 1)
+  - [x] Créer `src/components/FAB.tsx`
+  - [x] Position fixed, bottom-right
+  - [x] Taille 56px, couleur primary
+  - [x] Icône + (Plus)
+  - [x] Ombre dure néo-brutaliste
+  - [x] Z-index au-dessus de tout
 
-- [ ] **Task 2: Création du schéma Zod** (AC: 5)
-  - [ ] Créer `src/features/books/bookSchema.ts`
-  - [ ] Valider titre (requis), auteur (requis), statut (enum)
-  - [ ] Messages en français
+- [x] **Task 2: Création du schéma Zod** (AC: 5)
+  - [x] Créer `src/features/books/bookSchema.ts`
+  - [x] Valider titre (requis), auteur (requis), statut (enum)
+  - [x] Messages en français
 
-- [ ] **Task 3: Création du composant BookForm** (AC: 2, 3, 5, 6, 7)
-  - [ ] Créer `src/features/books/BookForm.tsx`
-  - [ ] Intégrer React Hook Form + Zod
-  - [ ] Champ Input pour Titre
-  - [ ] Champ Input pour Auteur
-  - [ ] Champ Select pour Statut (avec options en français)
-  - [ ] Statut par défaut : "a_lire"
-  - [ ] Bouton "Ajouter" avec état de chargement
+- [x] **Task 3: Création du composant BookForm** (AC: 2, 3, 5, 6, 7)
+  - [x] Créer `src/features/books/BookForm.tsx`
+  - [x] Intégrer React Hook Form + Zod
+  - [x] Champ Input pour Titre
+  - [x] Champ Input pour Auteur
+  - [x] Champ Select pour Statut (avec options en français)
+  - [x] Statut par défaut : "a_lire"
+  - [x] Bouton "Ajouter" avec état de chargement
 
-- [ ] **Task 4: Création du mutation hook** (AC: 4)
-  - [ ] Ajouter `useAddBook` dans `src/features/books/useBooks.ts`
-  - [ ] Utiliser `useMutation` de TanStack Query
-  - [ ] Invalider `['livres']` après succès
-  - [ ] Insérer avec `user_id` de l'utilisateur courant
+- [x] **Task 4: Création du mutation hook** (AC: 4)
+  - [x] Ajouter `useAddBook` dans `src/features/books/useBooks.ts`
+  - [x] Utiliser `useMutation` de TanStack Query
+  - [x] Invalider `['livres']` après succès
+  - [x] Insérer avec `user_id` de l'utilisateur courant
 
-- [ ] **Task 5: Création du Dialog/Sheet** (AC: 2, 7)
-  - [ ] Créer `src/features/books/AddBookDialog.tsx`
-  - [ ] Utiliser Sheet sur mobile (< 768px)
-  - [ ] Utiliser Dialog sur desktop (≥ 768px)
-  - [ ] Gérer l'état ouvert/fermé
+- [x] **Task 5: Création du Dialog/Sheet** (AC: 2, 7)
+  - [x] Créer `src/features/books/AddBookDialog.tsx`
+  - [x] Utiliser Sheet sur mobile (< 768px)
+  - [x] Utiliser Dialog sur desktop (≥ 768px)
+  - [x] Gérer l'état ouvert/fermé
 
-- [ ] **Task 6: Toast de succès** (AC: 4)
-  - [ ] Afficher toast "Livre ajouté" après création
-  - [ ] Utiliser Sonner
+- [x] **Task 6: Toast de succès** (AC: 4)
+  - [x] Afficher toast "Livre ajouté" après création
+  - [x] Utiliser Sonner
 
-- [ ] **Task 7: Intégration dans HomePage** (AC: 1, 2)
-  - [ ] Ajouter FAB dans HomePage
-  - [ ] Connecter FAB à l'ouverture du Dialog/Sheet
-  - [ ] Gérer l'état du modal
+- [x] **Task 7: Intégration dans HomePage** (AC: 1, 2)
+  - [x] Ajouter FAB dans HomePage
+  - [x] Connecter FAB à l'ouverture du Dialog/Sheet
+  - [x] Gérer l'état du modal
 
 ---
 
@@ -259,31 +259,73 @@ src/
 ## Dev Agent Record
 
 ### Agent Model Used
-Claude Opus 4.5 (SM Agent - Bob)
+- Story Creation: Claude Opus 4.5 (SM Agent - Bob)
+- Implementation: Claude Opus 4.5 (DEV Agent - Amelia)
+
+### Implementation Notes
+- FAB avec style néo-brutaliste, position fixed bottom-right
+- BookForm avec React Hook Form + Zod validation
+- AddBookDialog responsive: Sheet sur mobile, Dialog sur desktop
+- useAddBook mutation avec invalidation du cache
+- Toast Sonner pour feedback utilisateur
+- Build réussi sans erreurs TypeScript
 
 ### File List
-_Expected files:_
+**Created:**
 - `src/components/FAB.tsx`
 - `src/features/books/bookSchema.ts`
 - `src/features/books/BookForm.tsx`
 - `src/features/books/AddBookDialog.tsx`
-- Mise à jour `src/features/books/useBooks.ts`
-- Mise à jour `src/pages/HomePage.tsx`
+- `src/components/ui/sheet.tsx` (shadcn)
+- `src/components/ui/dialog.tsx` (shadcn)
+- `src/components/ui/select.tsx` (shadcn)
+
+**Modified:**
+- `src/features/books/useBooks.ts` (ajout useAddBook)
+- `src/pages/HomePage.tsx` (intégration FAB + Dialog)
 
 ---
 
 ## Definition of Done
 
-- [ ] FAB visible et positionné correctement
-- [ ] Formulaire s'ouvre au clic sur FAB
-- [ ] 3 champs : Titre, Auteur, Statut
-- [ ] Statut par défaut "À lire"
-- [ ] Validation avec messages français
-- [ ] Création dans Supabase avec user_id
-- [ ] Invalidation du cache après ajout
-- [ ] Toast de succès
-- [ ] Fermeture du formulaire après ajout
+- [x] FAB visible et positionné correctement
+- [x] Formulaire s'ouvre au clic sur FAB
+- [x] 3 champs : Titre, Auteur, Statut
+- [x] Statut par défaut "À lire"
+- [x] Validation avec messages français
+- [x] Création dans Supabase avec user_id
+- [x] Invalidation du cache après ajout
+- [x] Toast de succès
+- [x] Fermeture du formulaire après ajout
 - [ ] Code commité
+
+---
+
+## Senior Developer Review (AI)
+
+### Review Date: 2025-12-29
+### Reviewer: Dev Agent (Amelia)
+### Outcome: ✅ APPROVED (with fixes applied)
+
+### Issues Found: 1
+
+| ID | Severity | Category | Description | Status |
+|----|----------|----------|-------------|--------|
+| SEC-01 | High | Security | Non-null assertion on user in useAddBook | ✅ Fixed |
+
+### Fixes Applied:
+1. Added user validation with proper error message before insert
+
+### Build Status: ✅ Passing
+
+---
+
+## Change Log
+
+| Date | Description |
+|------|-------------|
+| 2025-12-29 | Code review completed - 1 issue fixed |
+| 2025-12-18 | Story implémentée - FAB, formulaire, dialog responsive, mutation |
 
 ---
 

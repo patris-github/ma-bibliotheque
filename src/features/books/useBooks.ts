@@ -27,11 +27,15 @@ export function useAddBook() {
 
   return useMutation({
     mutationFn: async (data: BookFormData) => {
+      if (!user) {
+        throw new Error('Utilisateur non connecté')
+      }
+
       const { data: book, error } = await supabase
         .from('livres')
         .insert({
           ...data,
-          user_id: user!.id,
+          user_id: user.id,
         })
         .select()
         .single()

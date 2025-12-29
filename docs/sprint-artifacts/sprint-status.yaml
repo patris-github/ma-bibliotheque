@@ -53,10 +53,10 @@ development_status:
   epic-1-retrospective: optional
 
   # Epic 2: Gestion de la Collection de Livres
-  epic-2: in-progress
-  2-1-affichage-liste-livres: review
-  2-2-ajouter-livre: review
-  2-3-modifier-livre: review
-  2-4-supprimer-livre: review
+  epic-2: done
+  2-1-affichage-liste-livres: done
+  2-2-ajouter-livre: done
+  2-3-modifier-livre: done
+  2-4-supprimer-livre: done
   2-5-filtrer-par-statut: done
   epic-2-retrospective: optional

@@ -96,7 +96,7 @@ export function EditBookDialog({ book, open, onOpenChange }: EditBookDialogProps
       />
       {showCelebration && (
         <div className="fixed inset-0 pointer-events-none flex items-center justify-center z-50">
-          <div className="text-6xl animate-bounce">
+          <div className="text-6xl animate-bounce" role="img" aria-hidden="true">
             🎉
           </div>
         </div>
