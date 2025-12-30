@@ -60,5 +60,5 @@ development_status:
   2-4-supprimer-livre: done
   2-5-filtrer-par-statut: done
   2-6-afficher-couvertures-livres: done
-  2-7-scanner-code-barres: in-progress
+  2-7-scanner-code-barres: done
   epic-2-retrospective: optional

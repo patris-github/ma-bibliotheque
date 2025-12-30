@@ -13,7 +13,6 @@ export function BarcodeScanner({ onScan, onError, onClose }: BarcodeScannerProps
   const [isStarting, setIsStarting] = useState(true)
   const [permissionDenied, setPermissionDenied] = useState(false)
   const scannerRef = useRef<Html5Qrcode | null>(null)
-  const containerRef = useRef<HTMLDivElement>(null)
   const hasScannedRef = useRef(false)
 
   useEffect(() => {
@@ -101,7 +100,6 @@ export function BarcodeScanner({ onScan, onError, onClose }: BarcodeScannerProps
   return (
     <div className="flex flex-col items-center">
       <div
-        ref={containerRef}
         className="relative w-full max-w-sm aspect-[4/3] bg-black rounded-lg overflow-hidden"
       >
         <div id="barcode-scanner-container" className="w-full h-full" />

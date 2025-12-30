@@ -21,13 +21,22 @@ export interface BookFromISBN {
   cover_url: string | null
 }
 
+const AUTHOR_TIMEOUT_MS = 5000 // 5 seconds timeout for author lookup
+
 async function fetchAuthorName(authorKey: string): Promise<string | null> {
+  const controller = new AbortController()
+  const timeoutId = setTimeout(() => controller.abort(), AUTHOR_TIMEOUT_MS)
+
   try {
-    const response = await fetch(`https://openlibrary.org${authorKey}.json`)
+    const response = await fetch(`https://openlibrary.org${authorKey}.json`, {
+      signal: controller.signal,
+    })
+    clearTimeout(timeoutId)
     if (!response.ok) return null
     const data: OpenLibraryAuthor = await response.json()
     return data.name || null
   } catch {
+    clearTimeout(timeoutId)
     return null
   }
 }
