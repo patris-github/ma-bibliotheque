@@ -6,12 +6,14 @@ import { useBooks, type Book } from '@/features/books/useBooks'
 import { FAB } from '@/components/FAB'
 import { AddBookDialog } from '@/features/books/AddBookDialog'
 import { EditBookDialog } from '@/features/books/EditBookDialog'
+import { ScanBookDialog } from '@/features/books/ScanBookDialog'
 import { BottomNavigation } from '@/components/BottomNavigation'
 import type { FilterType } from '@/types'
 import { FilteredEmptyState } from '@/components/FilteredEmptyState'
 
 export function HomePage() {
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
+  const [isScanDialogOpen, setIsScanDialogOpen] = useState(false)
   const [selectedBook, setSelectedBook] = useState<Book | null>(null)
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
   const [filter, setFilter] = useState<FilterType>('all')
@@ -57,8 +59,12 @@ export function HomePage() {
         )}
       </main>
       <BottomNavigation activeFilter={filter} onFilterChange={setFilter} />
-      <FAB onClick={handleAddBook} />
+      <FAB
+        onManualAdd={() => setIsAddDialogOpen(true)}
+        onScanAdd={() => setIsScanDialogOpen(true)}
+      />
       <AddBookDialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen} />
+      <ScanBookDialog open={isScanDialogOpen} onOpenChange={setIsScanDialogOpen} />
       <EditBookDialog
         book={selectedBook}
         open={isEditDialogOpen}
