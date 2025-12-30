@@ -468,6 +468,56 @@ This document provides the complete epic and story breakdown for Ma Bibliothèqu
 
 ---
 
+### Story 2.7 : Scanner Code-Barres ISBN
+
+**As a** utilisateur connecté,
+**I want** scanner le code-barres d'un livre pour l'ajouter automatiquement,
+**So that** je puisse cataloguer rapidement ma collection sans saisie manuelle fastidieuse.
+
+**Acceptance Criteria:**
+
+**Given** je suis sur la page d'accueil
+**When** je clique sur le FAB (+)
+**Then** un menu s'affiche avec deux options : "Scanner" et "Saisie manuelle"
+
+**Given** je choisis l'option "Scanner"
+**When** la caméra s'ouvre
+**Then** je vois un viseur pour cadrer le code-barres
+**And** une demande de permission caméra s'affiche si nécessaire
+
+**Given** je scanne un code-barres ISBN valide
+**When** le code est détecté
+**Then** une recherche automatique est effectuée via Open Library API
+**And** le formulaire d'ajout s'ouvre avec les champs pré-remplis (titre, auteur, couverture)
+**And** je peux modifier les informations avant de sauvegarder
+
+**Given** le livre n'est pas trouvé dans Open Library
+**When** la recherche échoue
+**Then** un message m'informe que le livre n'a pas été trouvé
+**And** le formulaire de saisie manuelle s'ouvre pour compléter les informations
+
+**Given** le scan du code-barres échoue
+**When** la caméra ne détecte pas de code valide
+**Then** un bouton "Réessayer" et "Saisie manuelle" sont proposés
+
+**Given** je refuse la permission caméra
+**When** l'accès est refusé
+**Then** un message explicatif s'affiche
+**And** l'option de saisie manuelle reste disponible
+
+**Technical Notes:**
+- Librairie scanner : `html5-qrcode` (supporte EAN-13, ISBN-10, ISBN-13)
+- API Open Library ISBN : `https://openlibrary.org/isbn/{isbn}.json`
+- Formats supportés : EAN-13 (978...), ISBN-10, ISBN-13
+- Migration DB optionnelle : Ajouter colonne `isbn` (text, nullable, unique) pour détection doublons
+
+**And** la saisie manuelle reste toujours accessible
+**And** le composant scanner utilise l'API MediaDevices standard
+**And** le scan fonctionne sur mobile (iOS Safari, Android Chrome)
+**And** un feedback visuel/sonore confirme la détection du code
+
+---
+
 ## Validation et Résumé
 
 ### Couverture des Exigences
@@ -490,9 +540,9 @@ This document provides the complete epic and story breakdown for Ma Bibliothèqu
 | Métrique | Valeur |
 |----------|--------|
 | Epics | 2 |
-| Stories totales | 12 |
+| Stories totales | 13 |
 | Epic 1 stories | 6 |
-| Epic 2 stories | 6 |
+| Epic 2 stories | 7 |
 
 ### Séquence d'Implémentation Recommandée
 
@@ -500,7 +550,7 @@ This document provides the complete epic and story breakdown for Ma Bibliothèqu
    - Story 1.1 → 1.2 → 1.3 → 1.4 → 1.5 → 1.6
 
 2. **Epic 2** : Gestion de la Collection de Livres
-   - Story 2.1 → 2.2 → 2.3 → 2.4 → 2.5 → 2.6
+   - Story 2.1 → 2.2 → 2.3 → 2.4 → 2.5 → 2.6 → 2.7
 
 ### Document Status
 

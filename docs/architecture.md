@@ -580,6 +580,49 @@ const useBookCover = (titre: string, auteur: string) => {
 - Pas de rate limiting côté client (API Open Library gratuite)
 - Fallback obligatoire pour UX gracieuse
 
+### Barcode Scanner Integration (v1.2)
+
+**Purpose:** Ajout rapide de livres par scan du code-barres ISBN pour réduire la friction de saisie.
+
+**Library:** `html5-qrcode` (~80KB)
+- Supporte EAN-13, ISBN-10, ISBN-13
+- Compatible iOS Safari 14.5+, Android Chrome 88+, Desktop browsers
+
+**API Endpoint:**
+```
+# Recherche par ISBN
+https://openlibrary.org/isbn/{isbn}.json
+```
+
+**Implementation Pattern:**
+```typescript
+// Service: lib/isbnLookup.ts
+export async function fetchBookByISBN(isbn: string): Promise<BookData | null> {
+  const response = await fetch(`https://openlibrary.org/isbn/${isbn}.json`)
+  if (!response.ok) return null
+  const data = await response.json()
+  return {
+    titre: data.title,
+    auteur: data.authors?.[0]?.name || '',
+    cover_url: data.covers?.[0] ? `https://covers.openlibrary.org/b/id/${data.covers[0]}-M.jpg` : null
+  }
+}
+```
+
+**User Flow:**
+```
+FAB (+) → Menu (Scanner | Manuel) → Caméra → Scan ISBN →
+API Lookup → Formulaire pré-rempli → Éditer/Confirmer → Sauvegarder
+```
+
+**Error Handling:**
+- Permission refusée → Message + fallback saisie manuelle
+- Scan échoue → Bouton retry + fallback manuel
+- Livre non trouvé → Message + formulaire manuel vide
+
+**Database Change (optionnel):**
+- Ajout colonne `isbn` (text, nullable, unique) pour détection doublons
+
 ### File Organization Patterns
 
 **Configuration Files (racine):**
